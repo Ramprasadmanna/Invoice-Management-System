@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>GST Purchase Table</title>
+  </head>
+
+  <body style="font-family: Inter">
+    <div class="mb-4 flex items-center justify-between">
+      <header class="title"></header>
+      <time class="date"></time>
+      <p class="pageNumber"></p>
+      <p class="totalPages"></p>
+    </div>
+    <table class="min-w-full border-collapse border border-slate-500">
+      <thead class="bg-indigo-950 text-white">
+        <tr>
+          <th
+            scope="col"
+            class="border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold text-gray-400"
+          >
+            #
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Purchase Date
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Name
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Item Type
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Invoice Id
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Company Name
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            State
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            GSTIN
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Taxable Amount
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            GST %
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            CGST
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            SGST
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            IGST
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Total
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Created At
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Updated At
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each data}}
+        <tr>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm font-medium text-gray-900"
+          >
+            {{increment @index}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm uppercase text-gray-900"
+          >
+            {{formatDate this.purchaseDate}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm capitalize text-gray-900"
+          >
+            {{this.name}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm capitalize text-gray-900"
+          >
+            {{this.type}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm capitalize text-gray-900"
+          >
+            {{this.invoiceId}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm capitalize text-gray-900"
+          >
+            {{this.companyName}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm capitalize text-gray-900"
+          >
+            {{this.state}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm capitalize text-gray-900"
+          >
+            {{this.gstNumber}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm capitalize text-gray-900"
+          >
+            {{formatAmount this.taxableAmount}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm capitalize text-gray-900"
+          >
+            {{this.gstSlab}}%
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm capitalize text-gray-900"
+          >
+            {{#if this.cgst}} {{formatAmount this.cgst}} {{else}} --- {{/if}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm capitalize text-gray-900"
+          >
+            {{#if this.sgst}} {{formatAmount this.sgst}} {{else}} --- {{/if}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm capitalize text-gray-900"
+          >
+            {{#if this.igst}} {{formatAmount this.igst}} {{else}} --- {{/if}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm capitalize text-gray-900"
+          >
+            {{formatAmount this.total}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm uppercase text-gray-900"
+          >
+            {{format this.createdAt}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm uppercase text-gray-900"
+          >
+            {{format this.updatedAt}}
+          </td>
+        </tr>
+        {{/each }}
+      </tbody>
+    </table>
+  </body>
+</html>

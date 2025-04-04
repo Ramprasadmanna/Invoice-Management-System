@@ -1,0 +1,22 @@
+export default {
+  INR: '₹',
+  USD: '$',
+  EUR: '€',
+  GBP: '£',
+  JPY: '¥',
+  AUD: 'A$',
+  CAD: 'C$',
+  CHF: 'CHF',
+  CNY: '¥',
+  SGD: 'S$',
+  HKD: 'HK$',
+  NZD: 'NZ$',
+  SEK: 'kr',
+  NOK: 'kr',
+  DKK: 'kr',
+  RUB: '₽',
+  BRL: 'R$',
+  ZAR: 'R',
+  MXN: '$',
+  KRW: '₩'
+};

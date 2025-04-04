@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Customer Table</title>
+  </head>
+
+  <body style="font-family: Inter, sans-serif">
+    <div class="mb-4 flex items-center justify-between">
+      <header class="title"></header>
+      <time class="date"></time>
+      <p class="pageNumber"></p>
+      <p class="totalPages"></p>
+    </div>
+    <table class="min-w-full border-collapse border border-slate-500">
+      <thead class="bg-indigo-950 text-white">
+        <tr>
+          <th
+            scope="col"
+            class="border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold text-gray-400"
+          >
+            #
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Customer Name
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Business Legal Name
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            GSTIN
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Place Of Supply
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Email
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Customer Phone
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Billing
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Shipping
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Customer Type
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Customer ID
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Created By
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Created At
+          </th>
+          <th
+            scope="col"
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold"
+          >
+            Updated At
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each data}}
+        <tr>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm font-medium text-gray-900"
+          >
+            {{increment @index}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 capitalize px-3 py-4 text-sm text-gray-900"
+          >
+            {{this.salutation}} {{this.firstName}} {{this.lastName}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 text-sm capitalize font-medium text-gray-900"
+          >
+            {{#if this.businessLegalName}} {{this.businessLegalName}} {{else}}
+            -- {{/if}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 text-sm font-medium text-gray-900"
+          >
+            {{#if this.gstNumber}} {{this.gstNumber}} {{else}} -- {{/if}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 text-sm font-medium text-gray-900"
+          >
+            {{this.placeOfSupply}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm text-gray-900"
+          >
+            {{this.email}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-xs font-medium text-gray-900"
+          >
+            <p class="mb-1">Work : {{this.workPhone}}</p>
+            <p>Mobile : {{this.mobile}}</p>
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-xs font-medium text-gray-900"
+          >
+            <p class="whitespace-nowrap">{{this.billingAddress}}</p>
+            <p class="whitespace-nowrap">
+              {{this.billingCity}}, {{this.billingState}} -
+              {{this.billingZipcode}}, {{this.billingCountry}}
+            </p>
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-3.5 text-xs font-medium text-gray-900"
+          >
+            <p class="whitespace-nowrap">{{this.shippingAddress}}</p>
+            <p class="whitespace-nowrap">
+              {{this.shippingCity}}, {{this.shippingState}} -
+              {{this.shippingZipcode}}, {{this.shippingCountry}}
+            </p>
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm capitalize text-gray-900"
+          >
+            {{this.customerType}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm font-medium text-gray-900"
+          >
+            {{this.id}}
+          </td>
+          <td
+            class="whitespace-nowrap border capitalize border-slate-400 px-3 py-4 text-sm uppercase text-gray-900"
+          >
+            {{this.user.name}} | Admin
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm uppercase text-gray-900"
+          >
+            {{format this.createdAt}}
+          </td>
+          <td
+            class="whitespace-nowrap border border-slate-400 px-3 py-4 text-sm uppercase text-gray-900"
+          >
+            {{format this.updatedAt}}
+          </td>
+        </tr>
+        {{/each }}
+      </tbody>
+    </table>
+  </body>
+</html>

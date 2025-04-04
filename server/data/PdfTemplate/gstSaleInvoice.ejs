@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Tax Invoice</title>
+  </head>
+
+  <body style="font-family: Inter">
+    <div class="w-screen bg-white py-12 px-80 print:p-0 flex flex-col gap-4">
+      <div class="flex justify-between items-center">
+        <div class="w-[60px] h-[60px]">
+          <img
+            src="https://ecourses.worldonvastu.com/wp-content/uploads/2024/09/Logo.png"
+            alt="World On Vaastu Logo"
+          />
+        </div>
+        <h1 class="uppercase font-bold text-4xl">{{ data.invoiceType }}</h1>
+      </div>
+
+      <!-- Sender Add And Invoice Details -->
+      <div class="flex justify-between">
+        <div class="flex flex-col gap-1 text-xs">
+          <p class="font-semibold text-sm">Center For Energy Sciences</p>
+          <p>Mangal Bldg, 76-C, R.A.Kidwai,</p>
+          <p>Road, Matunga (CR), Mumbai,</p>
+          <p>Maharashtra - 400019</p>
+          <p>Phone - +91 9152937135</p>
+          <p>GSTIN 27AACPG4821B1ZC</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6 text-right font-medium text-sm">
+          <div class="flex flex-col gap-1 text-slate-400">
+            <p>Invoice Date :</p>
+            <p>Invoice Number :</p>
+            {{#if data.orderNumber}}
+            <p>Order Number :</p>
+            {{/if}}
+            <p>Due Date :</p>
+            <p>Place Of Supply :</p>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <p>{{formatDate data.invoiceDate}}</p>
+            <p>{{ data.invoiceNumber }}</p>
+            {{#if data.orderNumber}}
+            <p>{{ data.orderNumber }}</p>
+            {{/if}}
+            <p>{{formatDate data.dueDate}}</p>
+            <p>{{ data.customer.placeOfSupply }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Billing And Shipping -->
+      <div class="flex justify-between">
+        <div class="flex flex-col text-left gap-1 text-xs">
+          <p class="font-medium text-slate-400">Bill To</p>
+          {{#if data.customer.businessLegalName}}
+          <p class="font-semibold capitalize text-sm leading-4">
+            {{ data.customer.businessLegalName }}
+          </p>
+          {{/if}}
+          <p class="font-semibold text-sm leading-4 capitalize">
+            {{ data.customer.salutation }} {{ data.customer.firstName }}
+            {{ data.customer.lastName }}
+          </p>
+          <p>{{ data.customer.billingAddress }}</p>
+          <p>
+            {{ data.customer.billingCity }}, {{ data.customer.billingState }} -
+            {{ data.customer.billingZipcode }}
+          </p>
+          <p>{{ data.customer.billingCountry }}</p>
+          {{#if data.customer.gstNumber}}
+          <p class="">GSTIN {{ data.customer.gstNumber }}</p>
+          {{/if}}
+        </div>
+
+        <div class="flex flex-col gap-1 text-xs text-right">
+          <p class="font-medium text-slate-400">Ship To</p>
+          {{#if data.customer.businessLegalName}}
+          <p class="font-semibold capitalize text-sm leading-4">
+            {{ data.customer.businessLegalName }}
+          </p>
+          {{/if}}
+          <p class="font-semibold text-sm leading-4 capitalize">
+            {{ data.customer.salutation }} {{ data.customer.firstName }}
+            {{ data.customer.lastName }}
+          </p>
+          <p>{{ data.customer.shippingAddress }}</p>
+          <p>
+            {{ data.customer.shippingCity }},
+            {{ data.customer.shippingState }} -
+            {{ data.customer.shippingZipcode }}
+          </p>
+          <p>{{ data.customer.shippingCountry }}</p>
+          {{#if data.customer.gstNumber}}
+          <p class="">GSTIN {{ data.customer.gstNumber }}</p>
+          {{/if}}
+        </div>
+      </div>
+
+      <!-- Order Table -->
+      <table class="min-w-full border-collapse border border-[#1E265A]">
+        <thead class="bg-[#1E265A] text-white text-xs">
+          <tr>
+            <th class="font-medium p-2 text-left whitespace-nowrap">#</th>
+            <th class="font-medium p-2 text-left whitespace-nowrap">Items</th>
+            <th class="font-medium p-2 text-left whitespace-nowrap">HSN/SAC</th>
+            <th class="font-medium p-2 text-left whitespace-nowrap">Qty</th>
+            <th class="font-medium p-2 text-left whitespace-nowrap">Rate</th>
+            <th class="font-medium p-2 text-left whitespace-nowrap">
+              Taxable Value
+            </th>
+            <th class="font-medium p-2 text-left whitespace-nowrap">
+              Taxable Rate
+            </th>
+            {{#if (and data.cgst data.sgst)}}
+            <th class="font-medium p-2 text-left whitespace-nowrap">CGST</th>
+            <th class="font-medium p-2 text-left whitespace-nowrap">SGST</th>
+            {{else}}
+            <th class="font-medium p-2 text-left whitespace-nowrap">IGST</th>
+            {{/if}}
+            <th class="font-medium p-2 text-left whitespace-nowrap">
+              Total Amount
+            </th>
+          </tr>
+        </thead>
+
+        <tbody class="text-xs">
+          {{#each data.items}}
+          <tr>
+            <td class="font-medium p-2 text-left border border-[#1E265A]">
+              {{increment @index}}
+            </td>
+            <td
+              class="font-medium p-2 text-left border capitalize border-[#1E265A]"
+            >
+              {{ name }}
+
+              {{#if validity}}
+              <p class="mt-0.5 text-[10px] capitalize">{{ description }}</p>
+              <div
+                class="mt-0.5 font-regular flex flex-col text-[10px] text-slate-500"
+              >
+                <!-- <p class="whitespace-nowrap">
+                  {{formatDate startDate}} - {{formatDate endDate}}
+                </p> -->
+
+                <p class="whitespace-nowrap">
+                  Start Date : {{formatDate startDate}}
+                </p>
+                <p class="whitespace-nowrap">
+                  End Date : {{formatDate endDate}}
+                </p>
+                <p class="whitespace-nowrap">Validity : {{ validity }} Days</p>
+              </div>
+              {{/if}}
+            </td>
+            <td
+              class="font-medium p-2 text-right border whitespace-nowrap border-[#1E265A]"
+            >
+              {{ hsnsacCode }}
+            </td>
+            <td
+              class="font-medium p-2 text-right border whitespace-nowrap border-[#1E265A]"
+            >
+              {{ quantity }}
+            </td>
+            <td
+              class="font-medium p-2 text-right border whitespace-nowrap border-[#1E265A]"
+            >
+              {{formatAmount rate}}
+            </td>
+            <td
+              class="font-medium p-2 text-right border whitespace-nowrap border-[#1E265A]"
+            >
+              {{formatAmount taxableAmount}}
+            </td>
+            <td
+              class="font-medium p-2 text-right border whitespace-nowrap border-[#1E265A]"
+            >
+              {{ gstSlab }}%
+            </td>
+            {{#if (and @root.data.cgst @root.data.sgst)}}
+            <td
+              class="font-medium p-2 text-right border whitespace-nowrap border-[#1E265A]"
+            >
+              {{formatAmount cgst}}
+            </td>
+            <td
+              class="font-medium p-2 text-right border whitespace-nowrap border-[#1E265A]"
+            >
+              {{formatAmount sgst}}
+            </td>
+            {{else}}
+            <td
+              class="font-medium p-2 text-right border whitespace-nowrap border-[#1E265A]"
+            >
+              {{formatAmount igst}}
+            </td>
+            {{/if}}
+            <td
+              class="font-medium p-2 text-right border whitespace-nowrap border-[#1E265A]"
+            >
+              {{formatAmount total}}
+            </td>
+          </tr>
+          {{/each }}
+        </tbody>
+      </table>
+
+      <div class="grid grid-cols-[1fr_auto] gap-x-20 break-inside-avoid">
+        <!-- Terms & Condition And Customer Note -->
+        <div class="flex gap-4 flex-col">
+          <div class="flex flex-col gap-2">
+            <p class="font-semibold text-base">Terms & Condition</p>
+            <p class="text-xs">{{ data.termsAndCondition }}</p>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <p class="font-semibold text-base break-inside-avoid">
+              Customer Note
+            </p>
+            <p class="text-xs">{{ data.customerNote }}</p>
+          </div>
+        </div>
+
+        <!-- Payment Summary -->
+        <div class="grid grid-cols-2 w-fit gap-x-20">
+          <p class="col-span-full font-semibold mb-2 text-base">
+            Payment Summary
+          </p>
+
+          <div class="flex flex-col gap-1 text-sm font-medium">
+            <p>Sub Total</p>
+            {{#if (and data.cgst data.sgst)}}
+            <p>CGST ({{getGstSlab data.items "cgst"}}%)</p>
+            <p>SGST ({{getGstSlab data.items "sgst"}}%)</p>
+            {{else}}
+            <p>IGST ({{getGstSlab data.items "igst"}}%)</p>
+            {{/if}}
+
+            {{#if data.shippingCharges}}
+            <p>Shipping</p>
+            {{/if}}
+
+            {{#if data.discount}}
+            <p>Discount</p>
+            {{/if}}
+
+            {{#if data.otherAdjustments}}
+            <p>Adjustment</p>
+            {{/if}}
+          </div>
+
+          <div class="flex flex-col gap-1 text-sm font-semibold text-right">
+            <p>INR {{formatAmount data.taxableAmount}}</p>
+            {{#if (and data.cgst data.sgst)}}
+            <p>INR {{formatAmount data.cgst}}</p>
+            <p>INR {{formatAmount data.sgst}}</p>
+            {{else}}
+            <p>INR {{formatAmount data.igst}}</p>
+            {{/if}}
+
+            {{#if data.shippingCharges}}
+            <p>INR {{formatAmount data.shippingCharges}}</p>
+            {{/if}}
+
+            {{#if data.discount}}
+            <p>INR {{formatAmount data.discount}}</p>
+            {{/if}}
+
+            {{#if data.otherAdjustments}}
+            <p>INR {{formatAmount data.otherAdjustments}}</p>
+            {{/if}}
+          </div>
+
+          <div
+            class="col-span-full flex items-center h-fit mt-2 justify-between bg-blue-200 py-1 px-2"
+          >
+            <p class="text-sm font-medium">Total</p>
+            <p class="text-sm font-semibold">INR {{formatAmount data.total}}</p>
+          </div>
+
+          <div class="flex flex-col mt-2 gap-1 text-sm font-medium">
+            {{#if data.balanceDue}}
+            <p>Advance</p>
+            <p>Balance Due</p>
+            {{/if}}
+          </div>
+
+          <div
+            class="flex flex-col gap-1 mt-2 text-sm font-semibold text-right"
+          >
+            {{#if data.balanceDue}}
+            <p>INR {{formatAmount data.advanceAmount}}</p>
+            <p>INR {{formatAmount data.balanceDue}}</p>
+            {{/if}}
+          </div>
+        </div>
+
+        <p class="text-sm col-span-full mt-2 text-right">
+          {{towords data.total}}
+        </p>
+      </div>
+
+      <p class="text-center text-xs">
+        * This is computer generated invoice no signature required
+      </p>
+    </div>
+  </body>
+</html>

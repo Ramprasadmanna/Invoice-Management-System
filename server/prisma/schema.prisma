@@ -1,0 +1,339 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               Int                @id @default(autoincrement())
+  name             String
+  email            String             @unique
+  password         String
+  isAdmin          Boolean
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  Customer         Customer[]
+  GstItems         GstItems[]
+  GstSales         GstSales[]
+  cashItems        cashItems[]
+  cashSales        cashSales[]
+  gstPurchaseItems gstPurchaseItems[]
+  gstPurchase      gstPurchases[]
+  gstPaid          gstPaid[]
+  expenseItems     expenseItems[]
+  expenses         expenses[]
+}
+
+model Customer {
+  id                Int                @id @default(autoincrement())
+  userId            Int
+  user              User               @relation(fields: [userId], references: [id]) // Foreign Key
+  customerType      String
+  salutation        String
+  firstName         String
+  lastName          String
+  email             String             @unique
+  workPhone         String
+  mobile            String
+  businessLegalName String?
+  gstNumber         String?
+  placeOfSupply     String
+  billingCountry    String
+  billingState      String
+  billingCity       String
+  billingAddress    String
+  billingZipcode    String
+  shippingCountry   String
+  shippingState     String
+  shippingCity      String
+  shippingAddress   String
+  shippingZipcode   String
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  GstSales          GstSales[]
+  cashSales         cashSales[]
+  webHookGstOrders  webHookGstOrders[]
+  webHookOrders     webHookOrders[]
+}
+
+model GstItems {
+  id                    Int                     @id @default(autoincrement())
+  user                  User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId                Int
+  type                  String
+  name                  String
+  validity              Int?
+  hsnsacCode            String
+  gstSlab               Float
+  rate                  Float
+  cgst                  Float
+  sgst                  Float
+  igst                  Float
+  gstAmount             Float
+  total                 Float
+  description           String
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
+  GstSaleItems          GstSaleItems[]
+  webHookGstOrdersItems webHookGstOrdersItems[]
+}
+
+model GstSales {
+  id                Int            @id @default(autoincrement())
+  userId            Int
+  user              User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  invoiceType       String
+  customerId        Int
+  customer          Customer       @relation(fields: [customerId], references: [id])
+  invoiceNumber     String         @unique
+  orderNumber       String?
+  invoiceDate       DateTime       @db.Date
+  dueDate           DateTime       @db.Date
+  items             GstSaleItems[]
+  taxableAmount     Float
+  gstAmount         Float
+  cgst              Float?
+  sgst              Float?
+  igst              Float?
+  shippingCharges   Float
+  discount          Float
+  otherAdjustments  Float
+  total             Float
+  advanceAmount     Float
+  balanceDue        Float
+  accountType       String
+  customerNote      String         @db.VarChar(1000)
+  termsAndCondition String         @db.VarChar(1000)
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+}
+
+model GstSaleItems {
+  id            Int       @id @default(autoincrement())
+  gstSaleId     Int
+  gstSale       GstSales  @relation(fields: [gstSaleId], references: [id], onDelete: Cascade)
+  itemId        Int
+  item          GstItems  @relation(fields: [itemId], references: [id])
+  type          String
+  name          String
+  validity      Int?
+  startDate     DateTime?
+  endDate       DateTime?
+  description   String
+  hsnsacCode    String
+  gstSlab       Float
+  rate          Float
+  cgst          Float
+  sgst          Float
+  igst          Float
+  quantity      Int
+  taxableAmount Float
+  gstAmount     Float
+  total         Float
+}
+
+model cashItems {
+  id                 Int                  @id @default(autoincrement())
+  user               User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId             Int
+  type               String
+  name               String
+  validity           Int?
+  price              Float
+  description        String
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  cashSaleItems      cashSaleItems[]
+  webHookOrdersItems webHookOrdersItems[]
+}
+
+model cashSales {
+  id                Int             @id @default(autoincrement())
+  userId            Int
+  user              User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  customerId        Int
+  customer          Customer        @relation(fields: [customerId], references: [id])
+  invoiceNumber     String          @unique
+  orderNumber       String?
+  invoiceDate       DateTime        @db.Date
+  dueDate           DateTime        @db.Date
+  price             Float
+  shippingCharges   Float
+  discount          Float
+  otherAdjustments  Float
+  total             Float
+  advanceAmount     Float
+  balanceDue        Float
+  accountType       String
+  customerNote      String          @db.VarChar(1000)
+  termsAndCondition String          @db.VarChar(1000)
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  items             cashSaleItems[]
+}
+
+model cashSaleItems {
+  id          Int       @id @default(autoincrement())
+  cashSaleId  Int
+  cashSale    cashSales @relation(fields: [cashSaleId], references: [id], onDelete: Cascade)
+  itemId      Int
+  item        cashItems @relation(fields: [itemId], references: [id])
+  type        String
+  name        String
+  validity    Int?
+  startDate   DateTime?
+  endDate     DateTime?
+  description String
+  price       Float
+  quantity    Int
+  total       Float
+}
+
+model webHookGstOrders {
+  id               Int                     @id @default(autoincrement())
+  customerId       Int
+  customer         Customer                @relation(fields: [customerId], references: [id])
+  taxableAmount    Float
+  gstAmount        Float
+  cgst             Float?
+  sgst             Float?
+  igst             Float?
+  shippingCharges  Float
+  discount         Float
+  otherAdjustments Float
+  total            Float
+  items            webHookGstOrdersItems[]
+  createdAt        DateTime                @default(now())
+  updatedAt        DateTime                @updatedAt
+}
+
+model webHookGstOrdersItems {
+  id            Int              @id @default(autoincrement())
+  gstOrderId    Int
+  gstOrder      webHookGstOrders @relation(fields: [gstOrderId], references: [id], onDelete: Cascade)
+  itemId        Int
+  item          GstItems         @relation(fields: [itemId], references: [id])
+  type          String
+  name          String
+  validity      Int?
+  description   String
+  hsnsacCode    String
+  gstSlab       Float
+  rate          Float
+  cgst          Float
+  sgst          Float
+  igst          Float
+  quantity      Int
+  taxableAmount Float
+  gstAmount     Float
+  total         Float
+}
+
+model webHookOrders {
+  id               Int                  @id @default(autoincrement())
+  customerId       Int
+  customer         Customer             @relation(fields: [customerId], references: [id])
+  price            Float
+  shippingCharges  Float
+  discount         Float
+  otherAdjustments Float
+  total            Float
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+  items            webHookOrdersItems[]
+}
+
+model webHookOrdersItems {
+  id          Int           @id @default(autoincrement())
+  itemId      Int
+  orderId     Int
+  order       webHookOrders @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  item        cashItems     @relation(fields: [itemId], references: [id])
+  type        String
+  name        String
+  validity    Int?
+  description String
+  price       Float
+  quantity    Int
+  total       Float
+}
+
+model gstPurchaseItems {
+  id          Int            @id @default(autoincrement())
+  userId      Int
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type        String
+  name        String
+  companyName String         @unique
+  state       String
+  gstNumber   String
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  gstPurchase gstPurchases[]
+}
+
+model gstPurchases {
+  id            Int              @id @default(autoincrement())
+  userId        Int
+  user          User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  itemId        Int
+  item          gstPurchaseItems @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  purchaseDate  DateTime         @db.Date
+  invoiceNumber String
+  taxableAmount Float
+  gstSlab       Int
+  gstAmount     Float
+  cgst          Float?
+  sgst          Float?
+  igst          Float?
+  total         Float
+  paymentMethod String
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+}
+
+model expenseItems {
+  id        Int        @id @default(autoincrement())
+  userId    Int
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String     @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  expenses  expenses[]
+}
+
+model expenses {
+  id            Int          @id @default(autoincrement())
+  userId        Int
+  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expenseDate   DateTime     @db.Date
+  itemId        Int
+  item          expenseItems @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  quantity      Int
+  price         Float
+  paymentMethod String
+  remarks       String       @db.VarChar(1000)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+}
+
+model gstPaid {
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  dateOfPayment  DateTime @db.Date
+  monthOfGstPaid DateTime @db.Date
+  amount         Float
+  paymentMethod  String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}

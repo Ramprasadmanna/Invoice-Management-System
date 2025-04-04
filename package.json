@@ -1,0 +1,54 @@
+{
+  "name": "invoice",
+  "version": "1.0.0",
+  "description": "Invoice Management System",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server/main.js",
+    "server": "nodemon server/main.js",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node server/seeder.js",
+    "data:destroy": "node server/seeder.js -d"
+  },
+  "imports": {
+    "#config/*": "./server/config/*",
+    "#models/*": "./server/models/*",
+    "#routes/*": "./server/routes/*",
+    "#middlewares/*": "./server/middlewares/*",
+    "#controllers/*": "./server/controllers/*",
+    "#data/*": "./server/data/*",
+    "#utils/*": "./server/utils/*"
+  },
+  "author": "Ramprasad Manna",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^6.5.0",
+    "bcryptjs": "^3.0.2",
+    "colors": "^1.4.0",
+    "cookie-parser": "^1.4.7",
+    "csv-writer": "^1.6.0",
+    "dotenv": "^16.4.7",
+    "exceljs": "^1.8.0",
+    "express": "^5.0.0-beta.3",
+    "express-status-monitor": "^1.3.4",
+    "handlebars": "^4.7.8",
+    "html-pdf-node": "^1.0.8",
+    "i": "^0.3.7",
+    "jsonwebtoken": "^9.0.2",
+    "jspdf": "^2.5.2",
+    "mongoose": "^8.9.4",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.10.0",
+    "npm": "^11.0.0",
+    "pdfkit": "^0.16.0",
+    "puppeteer": "^24.1.1",
+    "to-words": "^4.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9",
+    "prisma": "^6.5.0"
+  }
+}
