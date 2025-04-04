@@ -4,7 +4,6 @@ import morgan from "morgan";
 import colors from "colors";
 import path from "path";
 import cookieParser from "cookie-parser";
-import statusMonitor from "express-status-monitor";
 
 import { errorHandler } from "#middlewares/error.middleware.js";
 import { connectDB } from "#config/db.config.js";
@@ -31,7 +30,6 @@ app.use(express.json()); // Request body parsing
 app.use(express.urlencoded({ extended: true })); // Form data parsing
 app.use(cookieParser()); // Parse cookies
 app.use(morgan("dev"));
-app.use(statusMonitor());
 
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/customer", customerRoutes);

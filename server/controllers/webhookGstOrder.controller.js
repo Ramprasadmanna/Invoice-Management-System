@@ -45,7 +45,6 @@ const addWebHookGstOrder = async (req, res) => {
     };
   });
 
-  // If the Items Are Valid Check For the customer is present in the DB
 
   let customer = await prisma.customer.findUnique({
     where: { email },

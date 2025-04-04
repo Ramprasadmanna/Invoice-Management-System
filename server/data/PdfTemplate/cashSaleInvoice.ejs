@@ -71,9 +71,6 @@
             {{ data.customer.billingZipcode }}
           </p>
           <p>{{ data.customer.billingCountry }}</p>
-          {{#if data.customer.gstNumber}}
-          <p class="">GSTIN {{ data.customer.gstNumber }}</p>
-          {{/if}}
         </div>
 
         <div class="flex flex-col gap-1 text-xs text-right">
@@ -94,9 +91,6 @@
             {{ data.customer.shippingZipcode }}
           </p>
           <p>{{ data.customer.shippingCountry }}</p>
-          {{#if data.customer.gstNumber}}
-          <p class="">GSTIN {{ data.customer.gstNumber }}</p>
-          {{/if}}
         </div>
       </div>
 
@@ -178,7 +172,7 @@
 
         <!-- Payment Summary -->
         <div class="grid grid-cols-2 w-fit gap-x-20">
-          <p class="col-span-full font-semibold mb-2 text-base">
+          <p class="col-span-full font-semibold mb-2 text-base h-fit">
             Payment Summary
           </p>
 

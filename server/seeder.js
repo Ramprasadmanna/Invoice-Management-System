@@ -26,17 +26,17 @@ const importData = async () => {
       },
     });
 
-    await prisma.customer.createMany({
-      data: customers.map((customer) => ({ userId: user.id, ...customer })),
-    });
+    // await prisma.customer.createMany({
+    //   data: customers.map((customer) => ({ userId: user.id, ...customer })),
+    // });
 
-    await prisma.gstItems.createMany({
-      data: gstItems.map((gstItem) => ({ userId: user.id, ...gstItem })),
-    });
+    // await prisma.gstItems.createMany({
+    //   data: gstItems.map((gstItem) => ({ userId: user.id, ...gstItem })),
+    // });
 
-    await prisma.cashItems.createMany({
-      data: items.map((gstItem) => ({ userId: 9, ...gstItem })),
-    });
+    // await prisma.cashItems.createMany({
+    //   data: items.map((gstItem) => ({ userId: 9, ...gstItem })),
+    // });
 
     console.log("Data imported".green.inverse);
     process.exit();

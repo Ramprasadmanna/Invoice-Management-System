@@ -43,6 +43,7 @@ const addCustomer = async (req, res) => {
 
   const customer = await prisma.customer.create({
     data: {
+      userId: req.user.id,
       customerType: customerType.toLowerCase(),
       salutation: salutation.toLowerCase(),
       firstName: firstName.toLowerCase(),
@@ -382,7 +383,6 @@ const downloadCustomerListExcel = async (req, res) => {
   res.setHeader("Content-Disposition", "attachment; filename=data.xlsx");
   res.send(excel);
 };
-
 
 export {
   addCustomer,
