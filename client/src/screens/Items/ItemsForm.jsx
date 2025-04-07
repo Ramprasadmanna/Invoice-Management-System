@@ -138,7 +138,7 @@ const ItemsForm = ({
           <div className='grid grid-cols-1 gap-4'>
             <div className='item-type'>
               <p className='mb-2 block text-sm leading-6 font-medium text-gray-900'>
-                Item Type
+                Item Type <span className='text-red-500'>*</span>
               </p>
 
               <div className='flex flex-wrap gap-2'>
@@ -178,7 +178,7 @@ const ItemsForm = ({
               <label
                 htmlFor='name'
                 className='mb-2 block text-sm leading-6 font-medium text-gray-900'>
-                Item Name
+                Item Name <span className='text-red-500'>*</span>
               </label>
 
               <SelectWithSearch
@@ -194,7 +194,7 @@ const ItemsForm = ({
                 <label
                   htmlFor='validity'
                   className='block text-sm leading-6 font-medium text-gray-900'>
-                  Validity (In Days)
+                  Validity (In Days) <span className='text-red-500'>*</span>
                 </label>
 
                 <div className='mt-2 flex gap-2'>
@@ -213,7 +213,7 @@ const ItemsForm = ({
               <label
                 htmlFor='rate'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Price
+                Price <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -233,7 +233,7 @@ const ItemsForm = ({
               <label
                 htmlFor='item-description'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Item Description
+                Item Description <span className='text-red-500'>*</span>
               </label>
               <div className='mt-2 flex gap-4'>
                 <textarea

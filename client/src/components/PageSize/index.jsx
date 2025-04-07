@@ -1,10 +1,16 @@
 import PropTypes from 'prop-types';
 
-const PageSize = ({ handlePageSize }) => {
+const PageSize = ({ pageSize, setPageSize, setPageNumber }) => {
+  const handlePageSize = (e) => {
+    setPageSize(+e.target.value);
+    setPageNumber(1);
+  };
+
   return (
     <select
       onChange={handlePageSize}
-      className='cursor-pointer rounded-md border border-wovBlue bg-transparent px-5 py-2.5 pr-8 text-sm text-wovBlue focus:outline-0 focus:ring-0 active:outline-0 active:ring-0'>
+      value={pageSize}
+      className='border-wovBlue text-wovBlue cursor-pointer rounded-md border bg-transparent px-5 py-2.5 pr-8 text-sm focus:ring-0 focus:outline-0 active:ring-0 active:outline-0'>
       <option value='20'>20 Rows Per Page</option>
       <option value='30'>30 Rows Per Page</option>
       <option value='40'>40 Rows Per Page</option>
@@ -15,7 +21,9 @@ const PageSize = ({ handlePageSize }) => {
 };
 
 PageSize.propTypes = {
-  handlePageSize: PropTypes.func,
+  pageSize: PropTypes.number,
+  setPageSize: PropTypes.func,
+  setPageNumber: PropTypes.func,
 };
 
 export default PageSize;

@@ -113,7 +113,7 @@ const GstPaidForm = ({
               <label
                 htmlFor='gst-paid-date'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                GST Paid Date
+                GST Paid Date  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -131,7 +131,7 @@ const GstPaidForm = ({
               <label
                 htmlFor='gst-paid-month'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                GST Paid Month
+                GST Paid Month  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -149,7 +149,7 @@ const GstPaidForm = ({
               <label
                 htmlFor='amount'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Amount
+                Amount  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -167,7 +167,7 @@ const GstPaidForm = ({
 
             <div className='payment-method'>
               <p className='mb-2 block text-sm leading-6 font-medium text-gray-900'>
-                Payment Method
+                Payment Method  <span className='text-red-500'>*</span>
               </p>
 
               <div className='grid grid-cols-2 gap-2'>

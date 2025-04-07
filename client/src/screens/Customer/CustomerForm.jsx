@@ -307,7 +307,7 @@ const CustomerForm = ({
         </p>
         <div
           onClick={handleCloseForm}
-          className='absolute top-0 right-0 w-fit -translate-y-1/2 translate-x-1/2 cursor-pointer rounded-full bg-white p-0.5'>
+          className='absolute top-0 right-0 w-fit translate-x-1/2 -translate-y-1/2 cursor-pointer rounded-full bg-white p-0.5'>
           <XMarkIcon className='size-5' />
         </div>
 
@@ -322,7 +322,7 @@ const CustomerForm = ({
 
             <div className='customer-type'>
               <p className='mb-2 block text-sm leading-6 font-medium text-gray-900'>
-                Customer Type
+                Customer Type <span className='text-red-500'>*</span>
               </p>
 
               <div className='flex flex-wrap gap-2'>
@@ -364,7 +364,7 @@ const CustomerForm = ({
               <label
                 htmlFor='name'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Name
+                Name <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -401,7 +401,7 @@ const CustomerForm = ({
               <label
                 htmlFor='work-phone'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Work Phone
+                Work Phone <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -432,7 +432,7 @@ const CustomerForm = ({
               <label
                 htmlFor='mobile-phone'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Mobile Phone
+                Mobile Phone <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -460,7 +460,7 @@ const CustomerForm = ({
               <label
                 htmlFor='email'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Customer Email
+                Customer Email <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-4'>
@@ -490,7 +490,7 @@ const CustomerForm = ({
                   <label
                     htmlFor='busniness-legal-name'
                     className='block text-sm leading-6 font-medium text-gray-900'>
-                    Busniness Legal Name
+                    Busniness Legal Name <span className='text-red-500'>*</span>
                   </label>
                   <div className='mt-2 flex gap-4'>
                     <input
@@ -511,7 +511,7 @@ const CustomerForm = ({
                   <label
                     htmlFor='gst-number'
                     className='block text-sm leading-6 font-medium text-gray-900'>
-                    GSTIN
+                    GSTIN <span className='text-red-500'>*</span>
                   </label>
                   <div className='mt-2 flex gap-4'>
                     <input
@@ -532,7 +532,7 @@ const CustomerForm = ({
               <label
                 htmlFor='place-of-supply'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Place Of Supply
+                Place Of Supply <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-4'>
@@ -557,7 +557,7 @@ const CustomerForm = ({
               <label
                 htmlFor='billing-address'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Address
+                Address <span className='text-red-500'>*</span>
               </label>
               <div className='mt-2 flex gap-4'>
                 <textarea
@@ -576,7 +576,7 @@ const CustomerForm = ({
               <label
                 htmlFor='billing-country'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Country / Region
+                Country / Region <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-4'>
@@ -593,7 +593,7 @@ const CustomerForm = ({
               <label
                 htmlFor='billing-state'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                State
+                State <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-4'>
@@ -610,7 +610,7 @@ const CustomerForm = ({
               <label
                 htmlFor='billing-city'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                City
+                City <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-4'>
@@ -627,7 +627,7 @@ const CustomerForm = ({
               <label
                 htmlFor='billing-zipcode'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                ZipCode
+                ZipCode <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -673,7 +673,7 @@ const CustomerForm = ({
               <label
                 htmlFor='shipping-address'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Address
+                Address <span className='text-red-500'>*</span>
               </label>
               <div className='mt-2 flex gap-4'>
                 <textarea
@@ -692,7 +692,7 @@ const CustomerForm = ({
               <label
                 htmlFor='shipping-country'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Country / Region
+                Country / Region <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-4'>
@@ -710,7 +710,7 @@ const CustomerForm = ({
               <label
                 htmlFor='shipping-state'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                State
+                State <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-4'>
@@ -728,7 +728,7 @@ const CustomerForm = ({
               <label
                 htmlFor='shipping-city'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                City
+                City <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-4'>
@@ -746,7 +746,7 @@ const CustomerForm = ({
               <label
                 htmlFor='shipping-zipcode'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                ZipCode
+                ZipCode <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>

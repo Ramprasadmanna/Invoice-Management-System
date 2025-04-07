@@ -12,8 +12,8 @@ import { admin, protect } from "#middlewares/auth.middleware.js";
 
 const router = express.Router();
 
-router.route("/").post(protect, admin, addItems).get(getItems);
-router.route("/search").get(searchItems);
+router.route("/").post(protect, admin, addItems).get(protect, admin, getItems);
+router.route("/search").get(protect, admin, searchItems);
 router
   .route("/:id")
   .put(protect, admin, updateItem)

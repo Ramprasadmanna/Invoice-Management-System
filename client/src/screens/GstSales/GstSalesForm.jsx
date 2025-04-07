@@ -297,7 +297,8 @@ const GstSalesForm = ({
           {/* Invoice Type */}
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             <p className='grid-full text-wovBlue col-span-full mb-2 flex items-center gap-2 text-base font-semibold'>
-              <DocumentIcon className='size-5' /> Invoice Type
+              <DocumentIcon className='size-5' /> Invoice Type{' '}
+              <span className='text-red-500'>*</span>
             </p>
 
             <div className='flex flex-wrap gap-2'>
@@ -338,7 +339,8 @@ const GstSalesForm = ({
           {/* Customer Information */}
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             <p className='grid-full text-wovBlue col-span-full mb-2 flex items-center gap-2 text-base font-semibold'>
-              <UserCircleIcon className='size-5' /> Customer Information
+              <UserCircleIcon className='size-5' /> Customer Information{' '}
+              <span className='text-red-500'>*</span>
             </p>
 
             <div className='search relative col-span-full'>
@@ -605,7 +607,7 @@ const GstSalesForm = ({
               <label
                 htmlFor='invoice-date'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Invoice Date
+                Invoice Date <span className='text-red-500'>*</span>
               </label>
               <div className='mt-2 flex gap-2'>
                 <input
@@ -630,7 +632,7 @@ const GstSalesForm = ({
               <label
                 htmlFor='due-date'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Due Date
+                Due Date <span className='text-red-500'>*</span>
               </label>
               <div className='mt-2 flex gap-2'>
                 <input
@@ -662,7 +664,8 @@ const GstSalesForm = ({
           {/* Payment Type */}
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             <p className='grid-full text-wovBlue col-span-full mb-2 flex items-center gap-2 text-base font-semibold'>
-              <BanknotesIcon className='size-5' /> Payment Information
+              <BanknotesIcon className='size-5' /> Payment Information{' '}
+              <span className='text-red-500'>*</span>
             </p>
 
             <div className='flex flex-wrap gap-2'>
@@ -704,14 +707,14 @@ const GstSalesForm = ({
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             <p className='grid-full text-wovBlue col-span-full mb-2 flex items-center gap-2 text-base font-semibold'>
               <NewspaperIcon className='size-5' />
-              Terms & Condition
+              Terms & Condition <span className='text-red-500'>*</span>
             </p>
 
             <div className='terms-conditon col-span-full'>
               <label
                 htmlFor='terms-conditon'
                 className='sr-only block text-sm leading-6 font-medium text-gray-900'>
-                Invoice Id
+                Terms and Condition
               </label>
               <div className='flex gap-2'>
                 <textarea
@@ -730,14 +733,14 @@ const GstSalesForm = ({
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             <p className='grid-full text-wovBlue col-span-full mb-2 flex items-center gap-2 text-base font-semibold'>
               <PencilSquareIcon className='size-5' />
-              Customer Note
+              Customer Note <span className='text-red-500'>*</span>
             </p>
 
             <div className='customer-note col-span-full'>
               <label
                 htmlFor='customer-note'
                 className='sr-only block text-sm leading-6 font-medium text-gray-900'>
-                Invoice Id
+                Customer Note
               </label>
               <div className='flex gap-2'>
                 <textarea

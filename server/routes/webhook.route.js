@@ -16,11 +16,11 @@ const router = express.Router();
 router
   .route(`/${process.env.GST_ORDER_UUID}/gstOrder`)
   .post(addWebHookGstOrder);
-router.route("/gstOrder").get(getWebHookGstOrders);
+router.route("/gstOrder").get(protect, admin, getWebHookGstOrders);
 router.route("/:id/confirmGstOrder").post(protect, admin, updateToGstSale);
 
 router.route(`/${process.env.ORDER_UUID}/order`).post(addWebHookOrder);
-router.route("/order").get(getWebHookOrders);
+router.route("/order").get(protect, admin,getWebHookOrders);
 router.route("/:id/confirmOrder").post(protect, admin, updateToSale);
 
 export default router;

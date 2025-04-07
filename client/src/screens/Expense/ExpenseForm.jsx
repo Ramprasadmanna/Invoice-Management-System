@@ -220,7 +220,7 @@ const ExpenseForm = ({
               <label
                 htmlFor='purchase-date'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Purchase Date
+                Purchase Date  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -239,7 +239,7 @@ const ExpenseForm = ({
               <label
                 htmlFor='name'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Item Name
+                Item Name  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -257,7 +257,7 @@ const ExpenseForm = ({
               <label
                 htmlFor='quantity'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Quantity
+                Quantity  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -276,7 +276,7 @@ const ExpenseForm = ({
               <label
                 htmlFor='price'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Total
+                Total  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -296,7 +296,7 @@ const ExpenseForm = ({
               <label
                 htmlFor='remarks'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Remarks
+                Remarks  <span className='text-red-500'>*</span>
               </label>
               <div className='mt-2 flex gap-4'>
                 <textarea
@@ -312,7 +312,7 @@ const ExpenseForm = ({
 
             <div className='payment-method'>
               <p className='mb-2 block text-sm leading-6 font-medium text-gray-900'>
-                Payment Method
+                Payment Method  <span className='text-red-500'>*</span>
               </p>
 
               <div className='grid grid-cols-2 gap-2'>

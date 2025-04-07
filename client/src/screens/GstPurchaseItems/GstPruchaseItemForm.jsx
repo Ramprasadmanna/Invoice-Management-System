@@ -121,7 +121,7 @@ const GstPruchaseItemForm = ({
           <div className='grid grid-cols-1 gap-4'>
             <div className='item-type'>
               <p className='mb-2 block text-sm font-medium leading-6 text-gray-900'>
-                Item Type
+                Item Type  <span className='text-red-500'>*</span>
               </p>
 
               <div className='flex flex-wrap gap-2'>
@@ -161,7 +161,7 @@ const GstPruchaseItemForm = ({
               <label
                 htmlFor='name'
                 className='block text-sm font-medium leading-6 text-gray-900'>
-                Item Name
+                Item Name  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -180,7 +180,7 @@ const GstPruchaseItemForm = ({
               <label
                 htmlFor='company-name'
                 className='block text-sm font-medium leading-6 text-gray-900'>
-                Company Name
+                Company Name  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -199,7 +199,7 @@ const GstPruchaseItemForm = ({
               <label
                 htmlFor='billing-state'
                 className='block text-sm font-medium leading-6 text-gray-900'>
-                State
+                State  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-4'>
@@ -216,7 +216,7 @@ const GstPruchaseItemForm = ({
               <label
                 htmlFor='gst-number'
                 className='block text-sm font-medium leading-6 text-gray-900'>
-                GST Number
+                GST Number  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>

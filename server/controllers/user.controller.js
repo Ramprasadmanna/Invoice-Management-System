@@ -112,7 +112,7 @@ const updateUserProfile = async (req, res) => {
     data: {
       name: req.body.name || user.name,
       email: req.body.email || user.email,
-      password: password,
+      password: password || user.password,
     },
   });
 

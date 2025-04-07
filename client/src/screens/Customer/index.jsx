@@ -40,7 +40,7 @@ const CustomerScreen = () => {
   const [showForm, setShowForm] = useState(false);
   const [initinalData, setInitinalData] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(20);
 
   // API Slice Query
   const {
@@ -158,12 +158,6 @@ const CustomerScreen = () => {
     }
   };
 
-  // Handle Change Pagesize
-  const handlePageSize = (e) => {
-    setPageSize(e.target.value);
-    setPageNumber(1);
-  };
-
   return (
     <div className='scrollbar-none flex flex-col gap-6 overflow-hidden p-4 sm:p-6'>
       {/* Header */}
@@ -237,7 +231,11 @@ const CustomerScreen = () => {
             )}
           </div>
 
-          <PageSize handlePageSize={handlePageSize} />
+          <PageSize
+            pageSize={pageSize}
+            setPageSize={setPageSize}
+            setPageNumber={setPageNumber}
+          />
         </div>
       </div>
 

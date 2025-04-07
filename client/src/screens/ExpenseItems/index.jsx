@@ -35,7 +35,7 @@ const ExpenseItemScreen = () => {
   const [showForm, setShowForm] = useState(false);
   const [initinalData, setInitinalData] = useState();
   const [pageNumber, setPageNumber] = useState(1);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(20);
 
   // API Slice Query
   const { data, isLoading, isFetching, isError, error, refetch } =
@@ -130,12 +130,6 @@ const ExpenseItemScreen = () => {
     }
   };
 
-  // Handle Change Pagesize
-  const handlePageSize = (e) => {
-    setPageSize(e.target.value);
-    setPageNumber(1);
-  };
-
   return (
     <div className='scrollbar-none flex flex-col gap-6 overflow-x-hidden overflow-y-scroll p-4 sm:p-6'>
       {/* Header */}
@@ -192,7 +186,11 @@ const ExpenseItemScreen = () => {
             )}
           </div>
 
-          <PageSize handlePageSize={handlePageSize} />
+          <PageSize
+            pageSize={pageSize}
+            setPageSize={setPageSize}
+            setPageNumber={setPageNumber}
+          />
         </div>
       </div>
 

@@ -13,8 +13,11 @@ import { admin, protect } from "#middlewares/auth.middleware.js";
 
 const router = express.Router();
 
-router.route("/").post(protect, admin, addCustomer).get(getCustomers);
-router.route("/search").get(searchCustomers);
+router
+  .route("/")
+  .post(protect, admin, addCustomer)
+  .get(protect, admin, getCustomers);
+router.route("/search").get(protect, admin, searchCustomers);
 router
   .route("/:id")
   .put(protect, admin, updateCustomer)

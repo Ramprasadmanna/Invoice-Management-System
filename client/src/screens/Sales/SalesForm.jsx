@@ -265,7 +265,8 @@ const SalesForm = ({
           {/* Customer Information */}
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             <p className='grid-full text-wovBlue col-span-full mb-2 flex items-center gap-2 text-base font-semibold'>
-              <UserCircleIcon className='size-5' /> Customer Information
+              <UserCircleIcon className='size-5' /> Customer Information{' '}
+              <span className='text-red-500'>*</span>
             </p>
 
             <div className='search relative col-span-full'>
@@ -531,7 +532,7 @@ const SalesForm = ({
               <label
                 htmlFor='invoice-date'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Invoice Date
+                Invoice Date <span className='text-red-500'>*</span>
               </label>
               <div className='mt-2 flex gap-2'>
                 <input
@@ -556,7 +557,7 @@ const SalesForm = ({
               <label
                 htmlFor='due-date'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Due Date
+                Due Date  <span className='text-red-500'>*</span>
               </label>
               <div className='mt-2 flex gap-2'>
                 <input
@@ -588,7 +589,8 @@ const SalesForm = ({
           {/* Payment Type */}
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             <p className='grid-full text-wovBlue col-span-full mb-2 flex items-center gap-2 text-base font-semibold'>
-              <BanknotesIcon className='size-5' /> Payment Information
+              <BanknotesIcon className='size-5' /> Payment Information{' '}
+              <span className='text-red-500'>*</span>
             </p>
 
             <div className='flex flex-wrap gap-2'>
@@ -630,7 +632,7 @@ const SalesForm = ({
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             <p className='grid-full text-wovBlue col-span-full mb-2 flex items-center gap-2 text-base font-semibold'>
               <NewspaperIcon className='size-5' />
-              Terms & Condition
+              Terms & Condition <span className='text-red-500'>*</span>
             </p>
 
             <div className='terms-conditon col-span-full'>
@@ -656,7 +658,7 @@ const SalesForm = ({
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
             <p className='grid-full text-wovBlue col-span-full mb-2 flex items-center gap-2 text-base font-semibold'>
               <PencilSquareIcon className='size-5' />
-              Customer Note
+              Customer Note <span className='text-red-500'>*</span>
             </p>
 
             <div className='customer-note col-span-full'>

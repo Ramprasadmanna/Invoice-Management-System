@@ -106,7 +106,7 @@ const AddUserForm = ({
               <label
                 htmlFor='name'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Name
+                Name  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -126,7 +126,7 @@ const AddUserForm = ({
               <label
                 htmlFor='email'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Email
+                Email  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-4'>
@@ -146,7 +146,7 @@ const AddUserForm = ({
               <label
                 htmlFor='password'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Password
+                Password  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-4'>
@@ -165,7 +165,7 @@ const AddUserForm = ({
               <label
                 htmlFor='confirm-password'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Confirm Password
+                Confirm Password  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-4'>

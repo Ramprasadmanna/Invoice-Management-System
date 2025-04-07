@@ -56,7 +56,7 @@ const GstSalesScreen = () => {
   const [initinalData, setInitinalData] = useState(null);
   const [showItemsDetails, setShowItemsDetails] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(20);
 
   // API Slice Query
   const {
@@ -129,12 +129,6 @@ const GstSalesScreen = () => {
         }
       }
     }
-  };
-
-  // Handle Change Pagesize
-  const handlePageSize = (e) => {
-    setPageSize(e.target.value);
-    setPageNumber(1);
   };
 
   // Handle Filter
@@ -281,7 +275,11 @@ const GstSalesScreen = () => {
             )}
           </div>
 
-          <PageSize handlePageSize={handlePageSize} />
+          <PageSize
+            pageSize={pageSize}
+            setPageSize={setPageSize}
+            setPageNumber={setPageNumber}
+          />
         </div>
       </div>
 

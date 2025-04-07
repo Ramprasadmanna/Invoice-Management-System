@@ -13,7 +13,11 @@ import { admin, protect } from "#middlewares/auth.middleware.js";
 
 const router = express.Router();
 
-router.route("/").post(protect, admin, addGstPurchase).get(getGstPurchases);
+router
+  .route("/")
+  .post(protect, admin, addGstPurchase)
+  .get(protect, admin, getGstPurchases);
+
 router
   .route("/:id")
   .put(protect, admin, updateGstPurchase)
@@ -21,7 +25,7 @@ router
 
 router.route("/download/excel").post(protect, admin, downloadGstPurchaseExcel);
 
-router.route("/summary/company").get(gstPurchaseCompanySummary);
+router.route("/summary/company").get(protect, admin, gstPurchaseCompanySummary);
 router
   .route("/download/summary/company")
   .post(protect, admin, downloadGstPurchaseCompanySummaryExcel);

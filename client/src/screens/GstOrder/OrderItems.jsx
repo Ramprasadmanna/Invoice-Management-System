@@ -331,7 +331,7 @@ const OrderItems = ({
       <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
         <p className='grid-full text-wovBlue col-span-full mb-2 flex items-center gap-2 text-base font-semibold'>
           <ListBulletIcon className='size-5' />
-          Order Items Information
+          Order Items Information <span className='text-red-500'>*</span>
         </p>
 
         {/* Search Box */}

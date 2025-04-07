@@ -146,6 +146,20 @@ const GstSalesGstPurchaseTable = () => {
                   Only Invoice Type TAX INVOICE Included In This Data
                 </p>
               </li>
+              <li className='flex items-center gap-4'>
+                <ArrowLongRightIcon className='size-4 text-slate-500' />
+                <p className='text-sm text-slate-500'>
+                  Difference In <span className='text-green-500'>Green</span>{' '}
+                  Means : Gst Paid Less
+                </p>
+              </li>
+              <li className='flex items-center gap-4'>
+                <ArrowLongRightIcon className='size-4 text-slate-500' />
+                <p className='text-sm text-slate-500'>
+                  Difference In <span className='text-red-500'>Red</span> Means
+                  : Gst Paid Extra
+                </p>
+              </li>
             </ul>
           </div>
         </div>

@@ -85,8 +85,8 @@ const OrderForm = ({
   // Set Initinal Data For Edit Form
   const fillInitinalData = (order) => {
     setCustomer(order.customer);
-    // setOrderDetails({ ...orderDetails, ...order });
     setOrderDetails({
+      ...orderDetails,
       items: order.items.map((item) => ({ ...item, id: item.itemId })),
       price: order.price,
       shippingCharges: order.shippingCharges,

@@ -75,7 +75,7 @@ const ExpenseItemForm = ({
               <label
                 htmlFor='name'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Item Name
+                Item Name <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>

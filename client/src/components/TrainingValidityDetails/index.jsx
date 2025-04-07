@@ -42,11 +42,12 @@ const TrainingValidityDetails = ({ item, orderDetails, setOrderDetails }) => {
       endDate,
     };
 
-    const items = orderDetails.items.map((item) => {
-      return item.id === product.id ? product : item;
-    });
-
-    setOrderDetails((prev) => ({ ...prev, items }));
+    setOrderDetails((prev) => ({
+      ...prev,
+      items: prev.items.map((item) => {
+        return item.id === product.id ? product : item; // Here Written Inside Because Of State Async Behaviour
+      }),
+    }));
   }, [validity, startDate]);
 
   return (

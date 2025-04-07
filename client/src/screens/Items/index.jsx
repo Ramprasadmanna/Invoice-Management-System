@@ -32,7 +32,7 @@ const ItemsScreen = () => {
   const [showDownloadOption, setShowDownloadOption] = useState(false);
   const [showGstItemForm, setShowGstItemForm] = useState(false);
   const [showCashItemForm, setShowCashItemForm] = useState(false);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(20);
   const [currentTab, setCurrentTab] = useState('Gst Items');
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -107,12 +107,6 @@ const ItemsScreen = () => {
         return toast.error('Error Downloading EXCEL File');
       }
     }
-  };
-
-  // Handle Change Pagesize
-  const handlePageSize = (e) => {
-    setPageSize(e.target.value);
-    setPageNumber(1);
   };
 
   return (
@@ -205,7 +199,11 @@ const ItemsScreen = () => {
               )}
             </div>
 
-            <PageSize handlePageSize={handlePageSize} />
+            <PageSize
+              pageSize={pageSize}
+              setPageSize={setPageSize}
+              setPageNumber={setPageNumber}
+            />
           </div>
         </div>
 

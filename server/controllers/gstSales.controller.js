@@ -1394,62 +1394,41 @@ SELECT
                             'invoiceDate', gs.invoiceDate,
                             'customer', 
                             JSON_OBJECT(
-                                'id',
-                c.id,
-                'customerType',
-                c.customerType,
-                'salutation',
-                c.salutation,
-                'firstName',
-                c.firstName,
-                'lastName',
-                c.lastName,
-                'email',
-                c.email,
-                'mobile',
-                c.mobile,
-                'gstNumber',
-                c.gstNumber,
-                'businessLegalName',
-                c.businessLegalName,
-                'placeOfSupply',
-                c.placeOfSupply
+                                'id', c.id,
+                                'customerType', c.customerType,
+                                'salutation', c.salutation,
+                                'firstName', c.firstName,
+                                'lastName', c.lastName,
+                                'email', c.email,
+                                'mobile', c.mobile,
+                                'gstNumber', c.gstNumber,
+                                'businessLegalName', c.businessLegalName,
+                                'placeOfSupply', c.placeOfSupply
                             ),
-                            'items', (
-                                SELECT 
-                                    JSON_OBJECT(
-                                        'name', gsi2.name,
-                                        'description', gsi2.description,
-                                        'type', gsi2.type,
-                                        'gstSlab', gsi2.gstSlab,
-                                        'quantity', gsi2.quantity,
-                                        'hsnCode', gsi2.hsnsacCode,
-                                        'rate', gsi2.rate,
-                                        'taxableAmount', gsi2.taxableAmount,
-                                        'cgst', gsi2.cgst,
-                                        'sgst', gsi2.sgst,
-                                        'igst', gsi2.igst,
-                                        'gstAmount', gsi2.gstAmount,
-                                        'total', gsi2.total
-                                    )
-                                
-                                FROM invoice.gstsaleitems gsi2
-                                WHERE gsi2.gstSaleId = gs.id
-                                  AND gsi2.hsnsacCode = gsi.hsnsacCode
-                                  AND YEAR(gs.invoiceDate) = ms.year  -- ✅ Corrected Filtering
-                                  AND MONTH(gs.invoiceDate) = ms.month  -- ✅ Corrected Filtering
+                            'item',
+                            JSON_OBJECT(
+                                'name', gsi2.name,
+                                'description', gsi2.description,
+                                'type', gsi2.type,
+                                'gstSlab', gsi2.gstSlab,
+                                'quantity', gsi2.quantity,
+                                'hsnCode', gsi2.hsnsacCode,
+                                'rate', gsi2.rate,
+                                'taxableAmount', gsi2.taxableAmount,
+                                'cgst', gsi2.cgst,
+                                'sgst', gsi2.sgst,
+                                'igst', gsi2.igst,
+                                'gstAmount', gsi2.gstAmount,
+                                'total', gsi2.total
                             )
                         )
                     )
-                    FROM invoice.gstSales gs
+                    FROM invoice.gstsaleitems gsi2
+                    INNER JOIN invoice.gstSales gs ON gsi2.gstSaleId = gs.id
                     INNER JOIN invoice.customer c ON gs.customerId = c.id
-                    WHERE EXISTS (
-                        SELECT 1 FROM invoice.gstsaleitems gsi3 
-                        WHERE gsi3.gstSaleId = gs.id 
-                        AND gsi3.hsnsacCode = gsi.hsnsacCode
-                        AND YEAR(gs.invoiceDate) = ms.year  -- ✅ Corrected Filtering
-                        AND MONTH(gs.invoiceDate) = ms.month  -- ✅ Corrected Filtering
-                    )
+                    WHERE gsi2.hsnsacCode = gsi.hsnsacCode
+                      AND YEAR(gs.invoiceDate) = ms.year
+                      AND MONTH(gs.invoiceDate) = ms.month
                 )
             )
         )
@@ -1466,7 +1445,6 @@ gs.invoiceDate BETWEEN ${startDate}
         OR gsi.hsnsacCode LIKE ${filter}
     )
 GROUP BY gsi.hsnsacCode;
-
 `;
 
   const gstSalesHsnSummary = JSON.parse(
@@ -1548,62 +1526,41 @@ SELECT
                             'invoiceDate', gs.invoiceDate,
                             'customer', 
                             JSON_OBJECT(
-                                'id',
-                c.id,
-                'customerType',
-                c.customerType,
-                'salutation',
-                c.salutation,
-                'firstName',
-                c.firstName,
-                'lastName',
-                c.lastName,
-                'email',
-                c.email,
-                'mobile',
-                c.mobile,
-                'gstNumber',
-                c.gstNumber,
-                'businessLegalName',
-                c.businessLegalName,
-                'placeOfSupply',
-                c.placeOfSupply
+                                'id', c.id,
+                                'customerType', c.customerType,
+                                'salutation', c.salutation,
+                                'firstName', c.firstName,
+                                'lastName', c.lastName,
+                                'email', c.email,
+                                'mobile', c.mobile,
+                                'gstNumber', c.gstNumber,
+                                'businessLegalName', c.businessLegalName,
+                                'placeOfSupply', c.placeOfSupply
                             ),
-                            'items', (
-                                SELECT 
-                                    JSON_OBJECT(
-                                        'name', gsi2.name,
-                                        'description', gsi2.description,
-                                        'type', gsi2.type,
-                                        'gstSlab', gsi2.gstSlab,
-                                        'quantity', gsi2.quantity,
-                                        'hsnCode', gsi2.hsnsacCode,
-                                        'rate', gsi2.rate,
-                                        'taxableAmount', gsi2.taxableAmount,
-                                        'cgst', gsi2.cgst,
-                                        'sgst', gsi2.sgst,
-                                        'igst', gsi2.igst,
-                                        'gstAmount', gsi2.gstAmount,
-                                        'total', gsi2.total
-                                    )
-                                
-                                FROM invoice.gstsaleitems gsi2
-                                WHERE gsi2.gstSaleId = gs.id
-                                  AND gsi2.hsnsacCode = gsi.hsnsacCode
-                                  AND YEAR(gs.invoiceDate) = ms.year  -- ✅ Corrected Filtering
-                                  AND MONTH(gs.invoiceDate) = ms.month  -- ✅ Corrected Filtering
+                            'item',
+                            JSON_OBJECT(
+                                'name', gsi2.name,
+                                'description', gsi2.description,
+                                'type', gsi2.type,
+                                'gstSlab', gsi2.gstSlab,
+                                'quantity', gsi2.quantity,
+                                'hsnCode', gsi2.hsnsacCode,
+                                'rate', gsi2.rate,
+                                'taxableAmount', gsi2.taxableAmount,
+                                'cgst', gsi2.cgst,
+                                'sgst', gsi2.sgst,
+                                'igst', gsi2.igst,
+                                'gstAmount', gsi2.gstAmount,
+                                'total', gsi2.total
                             )
                         )
                     )
-                    FROM invoice.gstSales gs
+                    FROM invoice.gstsaleitems gsi2
+                    INNER JOIN invoice.gstSales gs ON gsi2.gstSaleId = gs.id
                     INNER JOIN invoice.customer c ON gs.customerId = c.id
-                    WHERE EXISTS (
-                        SELECT 1 FROM invoice.gstsaleitems gsi3 
-                        WHERE gsi3.gstSaleId = gs.id 
-                        AND gsi3.hsnsacCode = gsi.hsnsacCode
-                        AND YEAR(gs.invoiceDate) = ms.year  -- ✅ Corrected Filtering
-                        AND MONTH(gs.invoiceDate) = ms.month  -- ✅ Corrected Filtering
-                    )
+                    WHERE gsi2.hsnsacCode = gsi.hsnsacCode
+                      AND YEAR(gs.invoiceDate) = ms.year
+                      AND MONTH(gs.invoiceDate) = ms.month
                 )
             )
         )
@@ -1620,7 +1577,6 @@ gs.invoiceDate BETWEEN ${startDate}
         OR gsi.hsnsacCode LIKE ${filter}
     )
 GROUP BY gsi.hsnsacCode;
-
 `;
 
   const gstSalesHsnSummary = JSON.parse(
@@ -1696,19 +1652,19 @@ GROUP BY gsi.hsnsacCode;
           businessLegalName,
           gstNumber,
           tradeType,
-          x.items.name,
-          x.items.description,
-          x.items.type,
-          x.items.hsnCode,
-          x.items.gstSlab,
-          x.items.quantity,
-          x.items.rate,
-          x.items.taxableAmount,
-          x.items.cgst,
-          x.items.sgst,
-          x.items.igst,
-          x.items.gstAmount,
-          x.items.total,
+          x.item.name,
+          x.item.description,
+          x.item.type,
+          x.item.hsnCode,
+          x.item.gstSlab,
+          x.item.quantity,
+          x.item.rate,
+          x.item.taxableAmount,
+          x.item.cgst,
+          x.item.sgst,
+          x.item.igst,
+          x.item.gstAmount,
+          x.item.total,
           x.orderNumber,
         ]);
       });

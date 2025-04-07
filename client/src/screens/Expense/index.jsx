@@ -38,7 +38,7 @@ const ExpenseScreen = () => {
   const [showForm, setShowForm] = useState(false);
   const [initinalData, setInitinalData] = useState();
   const [pageNumber, setPageNumber] = useState(1);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(20);
   const [fromDate, setFromDate] = useState('');
   const [toDate, seToDate] = useState('');
   const [filter, setFilter] = useState({});
@@ -157,12 +157,6 @@ const ExpenseScreen = () => {
     }
   };
 
-  // Handle Change Pagesize
-  const handlePageSize = (e) => {
-    setPageSize(e.target.value);
-    setPageNumber(1);
-  };
-
   return (
     <div className='scrollbar-none flex flex-col gap-6 overflow-x-hidden overflow-y-scroll p-4 sm:p-6'>
       {/* Header */}
@@ -219,7 +213,11 @@ const ExpenseScreen = () => {
             )}
           </div>
 
-          <PageSize handlePageSize={handlePageSize} />
+          <PageSize
+            pageSize={pageSize}
+            setPageSize={setPageSize}
+            setPageNumber={setPageNumber}
+          />
         </div>
       </div>
 
@@ -315,6 +313,11 @@ const ExpenseScreen = () => {
                       <th
                         scope='col'
                         className='border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold whitespace-nowrap'>
+                        Created By
+                      </th>
+                      <th
+                        scope='col'
+                        className='border border-slate-400 px-3 py-3.5 text-left text-sm font-semibold whitespace-nowrap'>
                         Created At
                       </th>
                       <th
@@ -352,6 +355,10 @@ const ExpenseScreen = () => {
                         </td>
                         <td className='border border-slate-400 px-3 py-4 text-xs whitespace-nowrap text-gray-900 capitalize'>
                           {purchase.remarks}
+                        </td>
+                        <td className='border border-slate-400 px-3 py-4 text-sm whitespace-nowrap text-gray-900 capitalize'>
+                          {purchase.user.name} |{' '}
+                          {purchase.user.isAdmin && 'Admin'}
                         </td>
                         <td className='border border-slate-400 px-3 py-4 text-sm whitespace-nowrap text-gray-900 uppercase'>
                           {dateTimeFormatter(purchase.createdAt)}

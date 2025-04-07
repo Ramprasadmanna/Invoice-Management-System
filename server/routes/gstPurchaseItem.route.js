@@ -15,11 +15,15 @@ const router = express.Router();
 router
   .route("/")
   .post(protect, admin, addGstPurchaseItem)
-  .get(getGstPurchaseItem);
+  .get(protect, admin, getGstPurchaseItem);
 
-router.route("/search").get(searchGstPurchaseItems);
-router.route("/:id").put(protect, admin, updateGstPurchaseItem);
-router.route("/:id").delete(protect, admin, deleteGstPurchaseItem);
-router.route("/download/excel").post(protect, admin, downloadGstPurchaseItemsListExcel);
+router.route("/search").get(protect, admin, searchGstPurchaseItems);
+router.route("/:id").put(protect, admin, protect, admin, updateGstPurchaseItem);
+router
+  .route("/:id")
+  .delete(protect, admin, protect, admin, deleteGstPurchaseItem);
+router
+  .route("/download/excel")
+  .post(protect, admin, downloadGstPurchaseItemsListExcel);
 
 export default router;

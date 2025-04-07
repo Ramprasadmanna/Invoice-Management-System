@@ -45,7 +45,6 @@ const addWebHookGstOrder = async (req, res) => {
     };
   });
 
-
   let customer = await prisma.customer.findUnique({
     where: { email },
   });

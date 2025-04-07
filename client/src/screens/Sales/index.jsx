@@ -55,7 +55,7 @@ const CashSalesScreen = () => {
   const [showItemsDetails, setShowItemsDetails] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
   const [initinalData, setInitinalData] = useState(null);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(20);
 
   // API Slice Query
   const {
@@ -100,12 +100,6 @@ const CashSalesScreen = () => {
   const handleEdit = (data) => {
     setShowForm(true);
     setInitinalData(data);
-  };
-
-  // Handle Change Pagesize
-  const handlePageSize = (e) => {
-    setPageSize(e.target.value);
-    setPageNumber(1);
   };
 
   // Handle Filter
@@ -279,7 +273,11 @@ const CashSalesScreen = () => {
             )}
           </div>
 
-          <PageSize handlePageSize={handlePageSize} />
+          <PageSize
+            pageSize={pageSize}
+            setPageSize={setPageSize}
+            setPageNumber={setPageNumber}
+          />
         </div>
       </div>
 

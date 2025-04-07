@@ -323,7 +323,7 @@ const GstPruchaseForm = ({
 
             <div className='item-type'>
               <p className='mb-2 block text-sm leading-6 font-medium text-gray-900'>
-                Item Type
+                Item Type  <span className='text-red-500'>*</span>
               </p>
 
               <div className='flex flex-wrap gap-2'>
@@ -363,7 +363,7 @@ const GstPruchaseForm = ({
               <label
                 htmlFor='purchase-date'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Purchase Date
+                Purchase Date  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -382,7 +382,7 @@ const GstPruchaseForm = ({
               <label
                 htmlFor='name'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Item Name
+                Item Name  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -400,7 +400,7 @@ const GstPruchaseForm = ({
               <label
                 htmlFor='invoice-number'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Invoice Number
+                Invoice Number  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -419,7 +419,7 @@ const GstPruchaseForm = ({
               <label
                 htmlFor='company-name'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Company Name
+                Company Name  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -437,7 +437,7 @@ const GstPruchaseForm = ({
               <label
                 htmlFor='billing-state'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                State
+                State  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-4'>
@@ -455,7 +455,7 @@ const GstPruchaseForm = ({
               <label
                 htmlFor='gst-number'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                GST Number
+                GST Number  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -473,7 +473,7 @@ const GstPruchaseForm = ({
               <label
                 htmlFor='tax-slab'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                GST %
+                GST %  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-4'>
@@ -495,7 +495,7 @@ const GstPruchaseForm = ({
               <label
                 htmlFor='taxable-price'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Taxable Amount
+                Taxable Amount  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -515,7 +515,7 @@ const GstPruchaseForm = ({
               <label
                 htmlFor='tax-price'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Tax Price
+                Tax Price  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -539,7 +539,7 @@ const GstPruchaseForm = ({
                     <label
                       htmlFor='cgst'
                       className='mb-2 block text-sm leading-6 font-medium text-gray-900'>
-                      CGST
+                      CGST  <span className='text-red-500'>*</span>
                     </label>
 
                     <input
@@ -555,7 +555,7 @@ const GstPruchaseForm = ({
                     <label
                       htmlFor='cgst'
                       className='mb-2 block text-sm leading-6 font-medium text-gray-900'>
-                      SGST
+                      SGST  <span className='text-red-500'>*</span>
                     </label>
 
                     <input
@@ -574,7 +574,7 @@ const GstPruchaseForm = ({
                     <label
                       htmlFor='cgst'
                       className='mb-2 block text-sm leading-6 font-medium text-gray-900'>
-                      IGST
+                      IGST  <span className='text-red-500'>*</span>
                     </label>
 
                     <input
@@ -593,7 +593,7 @@ const GstPruchaseForm = ({
               <label
                 htmlFor='final-amount'
                 className='block text-sm leading-6 font-medium text-gray-900'>
-                Total
+                Total  <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -611,7 +611,7 @@ const GstPruchaseForm = ({
 
             <div className='payment-method'>
               <p className='mb-2 block text-sm leading-6 font-medium text-gray-900'>
-                Payment Method
+                Payment Method  <span className='text-red-500'>*</span>
               </p>
 
               <div className='grid grid-cols-2 gap-2'>

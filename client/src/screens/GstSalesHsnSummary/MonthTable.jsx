@@ -181,38 +181,38 @@ const MonthTable = ({ monthlyData }) => {
                       {saleDetails.customer.businessLegalName ? 'B2B' : 'B2C'}
                     </td>
                     <td className='whitespace-nowrap border border-slate-400 px-2 py-2 text-xs capitalize text-gray-900'>
-                      {saleDetails.items.name}
+                      {saleDetails.item.name}
                     </td>
                     <td className='whitespace-nowrap border border-slate-400 px-2 py-2 text-xs capitalize text-gray-900'>
-                      {saleDetails.items.description}
+                      {saleDetails.item.description}
                     </td>
                     <td className='whitespace-nowrap border border-slate-400 px-2 py-2 text-xs capitalize text-gray-900'>
-                      {saleDetails.items.type}
+                      {saleDetails.item.type}
                     </td>
                     <td className='whitespace-nowrap border border-slate-400 px-2 py-2 text-xs capitalize text-gray-900'>
-                      {saleDetails.items.gstSlab}%
+                      {saleDetails.item.gstSlab}%
                     </td>
                     <td className='whitespace-nowrap border border-slate-400 px-2 py-2 text-xs capitalize text-gray-900'>
-                      {saleDetails.items.quantity}
+                      {saleDetails.item.quantity}
                     </td>
                     <td className='whitespace-nowrap border border-slate-400 px-2 py-2 text-right text-xs capitalize text-gray-900'>
-                      ₹{formattedAmount(saleDetails.items.rate)}
+                      ₹{formattedAmount(saleDetails.item.rate)}
                     </td>
                     <td className='whitespace-nowrap border border-slate-400 px-2 py-2 text-right text-xs capitalize text-gray-900'>
-                      ₹{formattedAmount(saleDetails.items.taxableAmount)}
+                      ₹{formattedAmount(saleDetails.item.taxableAmount)}
                     </td>
 
                     {CURRENT_STATE ===
                     saleDetails.customer.placeOfSupply?.toLowerCase() ? (
                       <>
                         <td className='whitespace-nowrap border border-slate-400 px-2 py-2 text-right text-xs capitalize text-gray-900'>
-                          {saleDetails.items.cgst
-                            ? `₹${formattedAmount(saleDetails.items.cgst)}`
+                          {saleDetails.item.cgst
+                            ? `₹${formattedAmount(saleDetails.item.cgst)}`
                             : '--'}
                         </td>
                         <td className='whitespace-nowrap border border-slate-400 px-2 py-2 text-right text-xs capitalize text-gray-900'>
-                          {saleDetails.items.sgst
-                            ? `₹${formattedAmount(saleDetails.items.sgst)}`
+                          {saleDetails.item.sgst
+                            ? `₹${formattedAmount(saleDetails.item.sgst)}`
                             : '--'}
                         </td>
                         <td className='whitespace-nowrap border border-slate-400 px-2 py-2 text-right text-xs capitalize text-gray-900'>
@@ -228,18 +228,18 @@ const MonthTable = ({ monthlyData }) => {
                           ---
                         </td>
                         <td className='whitespace-nowrap border border-slate-400 px-2 py-2 text-right text-xs capitalize text-gray-900'>
-                          {saleDetails.items.igst
-                            ? `₹${formattedAmount(saleDetails.items.igst)}`
+                          {saleDetails.item.igst
+                            ? `₹${formattedAmount(saleDetails.item.igst)}`
                             : '--'}
                         </td>
                       </>
                     )}
 
                     <td className='whitespace-nowrap border border-slate-400 px-2 py-2 text-right text-xs capitalize text-gray-900'>
-                      ₹{formattedAmount(saleDetails.items.gstAmount)}
+                      ₹{formattedAmount(saleDetails.item.gstAmount)}
                     </td>
                     <td className='whitespace-nowrap border border-slate-400 px-2 py-2 text-right text-xs capitalize text-gray-900'>
-                      ₹{formattedAmount(saleDetails.items.total)}
+                      ₹{formattedAmount(saleDetails.item.total)}
                     </td>
                   </tr>
                 ))}

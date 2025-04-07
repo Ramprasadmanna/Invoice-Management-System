@@ -228,25 +228,25 @@ const GstItemsForm = ({
 
   return (
     <div
-      className={`fixed px-6 transition-all duration-300 ${showGstItemForm ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'} left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-[rgb(0,0,0,0.5)]`}>
+      className={`fixed px-6 transition-all duration-300 ${showGstItemForm ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'} top-0 left-0 z-50 flex h-screen w-screen items-center justify-center bg-[rgb(0,0,0,0.5)]`}>
       <div className='relative z-50 flex h-[600px] w-[400px] flex-col rounded-md bg-white shadow-md'>
-        <p className='rounded-t-md bg-wovBlue py-5 text-center text-xl font-semibold text-white'>
+        <p className='bg-wovBlue rounded-t-md py-5 text-center text-xl font-semibold text-white'>
           {initinalData ? 'Edit GST Items' : 'Add New GST Items'}
         </p>
         <div
           onClick={handleCloseForm}
-          className='absolute right-0 top-0 w-fit -translate-y-1/2 translate-x-1/2 cursor-pointer rounded-full bg-white p-0.5'>
+          className='absolute top-0 right-0 w-fit translate-x-1/2 -translate-y-1/2 cursor-pointer rounded-full bg-white p-0.5'>
           <XMarkIcon className='size-5' />
         </div>
 
         <form
           onSubmit={handleVerifyData}
-          className='max-h-full w-full space-y-8 overflow-x-hidden overflow-y-scroll p-6 scrollbar-none'>
+          className='scrollbar-none max-h-full w-full space-y-8 overflow-x-hidden overflow-y-scroll p-6'>
           {/* Item Information */}
           <div className='grid grid-cols-1 gap-4'>
             <div className='item-type'>
-              <p className='mb-2 block text-sm font-medium leading-6 text-gray-900'>
-                Item Type
+              <p className='mb-2 block text-sm leading-6 font-medium text-gray-900'>
+                Item Type <span className='text-red-500'>*</span>
               </p>
 
               <div className='flex flex-wrap gap-2'>
@@ -258,7 +258,7 @@ const GstItemsForm = ({
                     value='goods'
                     checked={type === 'goods'}
                     onChange={(e) => setType(e.target.value)}
-                    className='mr-2 focus:outline-0 focus:ring-0 active:outline-0 active:ring-0'
+                    className='mr-2 focus:ring-0 focus:outline-0 active:ring-0 active:outline-0'
                   />
                   <label htmlFor='goods' className='cursor-pointer text-sm'>
                     Goods
@@ -273,7 +273,7 @@ const GstItemsForm = ({
                     value='service'
                     checked={type === 'service'}
                     onChange={(e) => setType(e.target.value)}
-                    className='mr-2 focus:outline-0 focus:ring-0 active:outline-0 active:ring-0'
+                    className='mr-2 focus:ring-0 focus:outline-0 active:ring-0 active:outline-0'
                   />
                   <label htmlFor='service' className='cursor-pointer text-sm'>
                     Service
@@ -285,8 +285,8 @@ const GstItemsForm = ({
             <div className='name'>
               <label
                 htmlFor='name'
-                className='block text-sm font-medium leading-6 text-gray-900'>
-                Item Name
+                className='block text-sm leading-6 font-medium text-gray-900'>
+                Item Name <span className='text-red-500'>*</span>
               </label>
 
               <SelectWithSearch
@@ -301,8 +301,8 @@ const GstItemsForm = ({
               <div className='validity'>
                 <label
                   htmlFor='validity'
-                  className='block text-sm font-medium leading-6 text-gray-900'>
-                  Validity (In Days)
+                  className='block text-sm leading-6 font-medium text-gray-900'>
+                  Validity (In Days) <span className='text-red-500'>*</span>
                 </label>
 
                 <div className='mt-2 flex gap-2'>
@@ -320,8 +320,8 @@ const GstItemsForm = ({
             <div className='hsn-code'>
               <label
                 htmlFor='hsn-code'
-                className='block text-sm font-medium leading-6 text-gray-900'>
-                HSN/SAC Code
+                className='block text-sm leading-6 font-medium text-gray-900'>
+                HSN/SAC Code <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -339,8 +339,8 @@ const GstItemsForm = ({
             <div className='tax-slab'>
               <label
                 htmlFor='tax-slab'
-                className='block text-sm font-medium leading-6 text-gray-900'>
-                GST %
+                className='block text-sm leading-6 font-medium text-gray-900'>
+                GST % <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-4'>
@@ -361,8 +361,8 @@ const GstItemsForm = ({
             <div className='rate'>
               <label
                 htmlFor='rate'
-                className='block text-sm font-medium leading-6 text-gray-900'>
-                Rate
+                className='block text-sm leading-6 font-medium text-gray-900'>
+                Rate <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -381,8 +381,8 @@ const GstItemsForm = ({
             <div className='tax-price'>
               <label
                 htmlFor='tax-price'
-                className='block text-sm font-medium leading-6 text-gray-900'>
-                Tax Price
+                className='block text-sm leading-6 font-medium text-gray-900'>
+                Tax Price <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -402,7 +402,7 @@ const GstItemsForm = ({
               <div>
                 <label
                   htmlFor='cgst'
-                  className='mb-2 block text-sm font-medium leading-6 text-gray-900'>
+                  className='mb-2 block text-sm leading-6 font-medium text-gray-900'>
                   CGST
                 </label>
 
@@ -418,7 +418,7 @@ const GstItemsForm = ({
               <div>
                 <label
                   htmlFor='cgst'
-                  className='mb-2 block text-sm font-medium leading-6 text-gray-900'>
+                  className='mb-2 block text-sm leading-6 font-medium text-gray-900'>
                   SGST
                 </label>
 
@@ -434,7 +434,7 @@ const GstItemsForm = ({
               <div>
                 <label
                   htmlFor='cgst'
-                  className='mb-2 block text-sm font-medium leading-6 text-gray-900'>
+                  className='mb-2 block text-sm leading-6 font-medium text-gray-900'>
                   IGST
                 </label>
 
@@ -451,8 +451,8 @@ const GstItemsForm = ({
             <div className='total'>
               <label
                 htmlFor='total'
-                className='block text-sm font-medium leading-6 text-gray-900'>
-                Total
+                className='block text-sm leading-6 font-medium text-gray-900'>
+                Total <span className='text-red-500'>*</span>
               </label>
 
               <div className='mt-2 flex gap-2'>
@@ -471,8 +471,8 @@ const GstItemsForm = ({
             <div className='item-description'>
               <label
                 htmlFor='item-description'
-                className='block text-sm font-medium leading-6 text-gray-900'>
-                Item Description
+                className='block text-sm leading-6 font-medium text-gray-900'>
+                Item Description <span className='text-red-500'>*</span>
               </label>
               <div className='mt-2 flex gap-4'>
                 <textarea
@@ -491,7 +491,7 @@ const GstItemsForm = ({
           {/* Submitting Data */}
           <div className='flex items-center justify-center border-t border-slate-900/10'>
             <button
-              className='mt-8 w-full rounded-md bg-wovBlue px-4 py-2 text-white transition-transform active:scale-95 disabled:cursor-not-allowed disabled:opacity-80'
+              className='bg-wovBlue mt-8 w-full rounded-md px-4 py-2 text-white transition-transform active:scale-95 disabled:cursor-not-allowed disabled:opacity-80'
               disabled={updateItemLoading || addItemLoading}>
               {initinalData
                 ? updateItemLoading

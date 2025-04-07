@@ -10,7 +10,10 @@ import { admin, protect } from "#middlewares/auth.middleware.js";
 
 const router = express.Router();
 
-router.route("/").post(protect, admin, addGstPaid).get(getGstPaid);
+router
+  .route("/")
+  .post(protect, admin, addGstPaid)
+  .get(protect, admin, getGstPaid);
 
 router
   .route("/:id")

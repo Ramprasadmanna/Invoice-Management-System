@@ -18,7 +18,10 @@ import { admin, protect } from "#middlewares/auth.middleware.js";
 
 const router = express.Router();
 
-router.route("/").post(protect, admin, addCashSale).get(getCashSales);
+router
+  .route("/")
+  .post(protect, admin, addCashSale)
+  .get(protect, admin, getCashSales);
 
 router
   .route("/:id")
@@ -49,5 +52,5 @@ router.route("/summary/product").get(protect, admin, salesProductSummary);
 router
   .route("/download/summary/product")
   .post(protect, admin, downloadSalesProductSummaryExcel);
-  
+
 export default router;
