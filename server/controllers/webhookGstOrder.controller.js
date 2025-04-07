@@ -313,7 +313,7 @@ const updateToGstSale = async (req, res) => {
 
     invoiceNumber = lastInvoiceNumber
       ? `A${Number(lastInvoiceNumber.substr(1)) + 1}`
-      : "A1001";
+      : "A1643";
   }
 
   const createdGstSale = await prisma.gstSales.create({
