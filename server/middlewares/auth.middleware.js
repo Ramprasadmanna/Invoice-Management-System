@@ -1,8 +1,22 @@
 import jwt from "jsonwebtoken";
 import { prisma } from "#config/db.config.js";
+import rateLimit from "express-rate-limit";
+
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  standardHeaders: true,
+  legacyHeaders: false,
+  handler: (req, res) => {
+    res.status(429).json({
+      message: "Access Denied. Too many login attempts.",
+    });
+  },
+});
 
 const protect = async (req, res, next) => {
   const token = req.cookies.jwt;
+
   if (token) {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -38,4 +52,4 @@ const admin = (req, res, next) => {
   }
 };
 
-export { protect, admin };
+export { protect, admin, loginLimiter };

@@ -22,6 +22,7 @@ import { logout } from '@slices/authSlice';
 import { useDispatch } from 'react-redux';
 import { useLogoutMutation } from '@slices/userApiSlice';
 import { toast } from 'react-toastify';
+import checkSessionExpired from '@utils/checkSession';
 
 const SideBar = ({ showSidebar, setShowSidebar }) => {
   const location = useLocation();
@@ -158,8 +159,10 @@ const SideBar = ({ showSidebar, setShowSidebar }) => {
       await logoutApiCall().unwrap();
       dispatch(logout());
     } catch (error) {
-      console.error(error);
-      toast.error(error?.data?.message);
+      if (!checkSessionExpired(error, dispatch, 'Logging Out')) {
+        console.error(error);
+        toast.error(error?.data?.message);
+      }
     }
   };
 

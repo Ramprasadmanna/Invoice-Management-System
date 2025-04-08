@@ -23,6 +23,8 @@ const loginUser = async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
     });
+
+    console.log(`[LOGIN] User: ${email}, IP: ${req.ip}`);
   } else {
     res.status(401);
     throw new Error("Invalid Email Or Password");

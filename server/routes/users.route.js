@@ -8,9 +8,9 @@ import {
   logoutUser,
   updateUserProfile,
 } from "#controllers/user.controller.js";
-import { admin, protect } from "#middlewares/auth.middleware.js";
+import { admin, loginLimiter, protect } from "#middlewares/auth.middleware.js";
 
-router.post("/login", loginUser);
+router.post("/login", loginLimiter, loginUser);
 router.post("/logout", protect, admin, logoutUser);
 router.post("/update/:id", protect, admin, updateUserProfile);
 router.get("/", protect, admin, getUsers);
