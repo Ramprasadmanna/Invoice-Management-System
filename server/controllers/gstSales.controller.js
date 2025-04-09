@@ -1716,7 +1716,7 @@ WITH MonthlySales AS (
         SUM(gsi.total) AS total_amount
     FROM GstSaleItems gsi
     INNER JOIN GstSales gs ON gsi.gstSaleId = gs.id
-    INNER JOIN gstItems gi ON gsi.itemId = gi.id
+    INNER JOIN GstItems gi ON gsi.itemId = gi.id
     WHERE
     gs.invoiceDate BETWEEN ${startDate}
     AND ${endDate}
@@ -1825,7 +1825,7 @@ SELECT
     ) AS monthly_data
 FROM GstSaleItems gsi
 INNER JOIN GstSales gs ON gsi.gstSaleId = gs.id
-INNER JOIN gstItems gi ON gsi.itemId = gi.id
+INNER JOIN GstItems gi ON gsi.itemId = gi.id
 WHERE
     gs.invoiceDate BETWEEN ${startDate}
     AND ${endDate}
@@ -1880,7 +1880,7 @@ WITH MonthlySales AS (
         SUM(gsi.total) AS total_amount
     FROM GstSaleItems gsi
     INNER JOIN GstSales gs ON gsi.gstSaleId = gs.id
-    INNER JOIN gstItems gi ON gsi.itemId = gi.id
+    INNER JOIN GstItems gi ON gsi.itemId = gi.id
     WHERE
     gs.invoiceDate BETWEEN ${startDate}
     AND ${endDate}
@@ -1989,7 +1989,7 @@ SELECT
     ) AS monthly_data
 FROM GstSaleItems gsi
 INNER JOIN GstSales gs ON gsi.gstSaleId = gs.id
-INNER JOIN gstItems gi ON gsi.itemId = gi.id
+INNER JOIN GstItems gi ON gsi.itemId = gi.id
 WHERE
     gs.invoiceDate BETWEEN ${startDate}
     AND ${endDate}
