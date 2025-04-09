@@ -43,7 +43,7 @@ const aggregatedGraphData = async (req, res) => {
       CAST(ROUND(SUM(gstAmount), 2) AS CHAR) AS gstAmount,
       CAST(ROUND(SUM(total), 2) AS CHAR) AS total,
       CAST(ROUND(SUM(total - balanceDue), 2) AS CHAR) AS netTotal
-  FROM gstSales
+  FROM GstSales 
   WHERE invoiceDate BETWEEN ${startDate} AND ${endDate}
     AND invoiceType = 'Tax Invoice'
     AND balanceDue=0
@@ -245,7 +245,7 @@ const aggregatedGstSalesData = async (req, res) => {
           CAST(ROUND(SUM(total), 2) AS CHAR) AS total,
           CAST(ROUND(SUM(balanceDue), 2) AS CHAR) AS balanceDue,
           CAST(ROUND(SUM(total - balanceDue), 2) AS CHAR) AS netTotal
-      FROM gstSales
+      FROM GstSales 
       WHERE invoiceDate BETWEEN ${startDate} AND ${endDate}
         AND invoiceType = 'Tax Invoice'
       GROUP BY year, month
@@ -262,7 +262,7 @@ const aggregatedGstSalesData = async (req, res) => {
           CAST(ROUND(SUM(total), 2) AS CHAR) AS total,
           CAST(ROUND(SUM(balanceDue), 2) AS CHAR) AS balanceDue,
           CAST(ROUND(SUM(total - balanceDue), 2) AS CHAR) AS netTotal
-      FROM gstSales
+      FROM GstSales 
       WHERE invoiceDate BETWEEN ${startDate} AND ${endDate}
         AND invoiceType = 'Tax Invoice';
     `;
@@ -410,7 +410,7 @@ const aggregatedGstSales_GstPurchase = async (req, res) => {
       CAST(ROUND(SUM(igst), 2) AS CHAR) AS igst,
       CAST(ROUND(SUM(gstAmount), 2) AS CHAR) AS gstAmount,
       CAST(ROUND(SUM(total), 2) AS CHAR) AS total
-  FROM gstSales
+  FROM GstSales 
   WHERE invoiceDate BETWEEN ${startDate} AND ${endDate}
     AND invoiceType = 'Tax Invoice'
     AND balanceDue=0
@@ -426,7 +426,7 @@ const aggregatedGstSales_GstPurchase = async (req, res) => {
       CAST(ROUND(SUM(igst), 2) AS CHAR) AS igst,
       CAST(ROUND(SUM(gstAmount), 2) AS CHAR) AS gstAmount,
       CAST(ROUND(SUM(total), 2) AS CHAR) AS total
-  FROM gstSales
+  FROM GstSales 
   WHERE invoiceDate BETWEEN ${startDate} AND ${endDate}
   AND invoiceType = 'Tax Invoice'
   AND balanceDue=0
