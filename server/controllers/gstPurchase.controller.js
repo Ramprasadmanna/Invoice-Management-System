@@ -296,7 +296,7 @@ const gstPurchaseCompanySummary = async (req, res) => {
         MONTH(gp.purchaseDate) AS month,
         COUNT(*) AS total_purchase,
         SUM(gp.total) AS total_amount
-    FROM invoice.gstPurchases gp
+    FROM gstPurchases gp
     WHERE
         gp.purchaseDate BETWEEN ${startDate} AND ${endDate}
     GROUP BY gp.itemId, YEAR(gp.purchaseDate), MONTH(gp.purchaseDate)
@@ -338,7 +338,7 @@ SELECT
                             'updatedAt', gp2.updatedAt
                         )
                     )
-                    FROM invoice.gstPurchases gp2
+                    FROM gstPurchases gp2
                     WHERE gp2.itemId = gpi.id
                       AND YEAR(gp2.purchaseDate) = mp.year
                       AND MONTH(gp2.purchaseDate) = mp.month
@@ -348,8 +348,8 @@ SELECT
         FROM MonthlyPurchases mp
         WHERE mp.item_id = gpi.id
     ) AS monthly_data
-FROM invoice.gstPurchases gp
-INNER JOIN invoice.gstPurchaseItems gpi ON gp.itemId = gpi.id
+FROM gstPurchases gp
+INNER JOIN gstPurchaseItems gpi ON gp.itemId = gpi.id
 WHERE
     gp.purchaseDate BETWEEN ${startDate} AND ${endDate}
     AND (
@@ -394,7 +394,7 @@ const downloadGstPurchaseCompanySummaryExcel = async (req, res) => {
         MONTH(gp.purchaseDate) AS month,
         COUNT(*) AS total_purchase,
         SUM(gp.total) AS total_amount
-    FROM invoice.gstPurchases gp
+    FROM gstPurchases gp
     WHERE
         gp.purchaseDate BETWEEN ${startDate} AND ${endDate}
     GROUP BY gp.itemId, YEAR(gp.purchaseDate), MONTH(gp.purchaseDate)
@@ -436,7 +436,7 @@ SELECT
                             'updatedAt', gp2.updatedAt
                         )
                     )
-                    FROM invoice.gstPurchases gp2
+                    FROM gstPurchases gp2
                     WHERE gp2.itemId = gpi.id
                       AND YEAR(gp2.purchaseDate) = mp.year
                       AND MONTH(gp2.purchaseDate) = mp.month
@@ -446,8 +446,8 @@ SELECT
         FROM MonthlyPurchases mp
         WHERE mp.item_id = gpi.id
     ) AS monthly_data
-FROM invoice.gstPurchases gp
-INNER JOIN invoice.gstPurchaseItems gpi ON gp.itemId = gpi.id
+FROM gstPurchases gp
+INNER JOIN gstPurchaseItems gpi ON gp.itemId = gpi.id
 WHERE
     gp.purchaseDate BETWEEN ${startDate} AND ${endDate}
     AND (

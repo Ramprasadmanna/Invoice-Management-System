@@ -246,7 +246,7 @@ const expenseItemSummary = async (req, res) => {
         COUNT(*) AS total_expenses,
         SUM(e.quantity) AS total_quantity,
         SUM(e.price) AS total_price
-    FROM invoice.expenses e
+    FROM expenses e
     WHERE
         e.expenseDate BETWEEN ${startDate} AND ${endDate}
     GROUP BY e.itemId, YEAR(e.expenseDate), MONTH(e.expenseDate)
@@ -280,7 +280,7 @@ SELECT
                             'updatedAt', e2.updatedAt
                         )
                     )
-                    FROM invoice.expenses e2
+                    FROM expenses e2
                     WHERE e2.itemId = ei.id
                       AND YEAR(e2.expenseDate) = me.year
                       AND MONTH(e2.expenseDate) = me.month
@@ -290,8 +290,8 @@ SELECT
         FROM MonthlyExpenses me
         WHERE me.item_id = ei.id
     ) AS monthly_data
-FROM invoice.expenses e
-INNER JOIN invoice.expenseItems ei ON e.itemId = ei.id
+FROM expenses e
+INNER JOIN expenseItems ei ON e.itemId = ei.id
 WHERE
     e.expenseDate BETWEEN ${startDate} AND ${endDate}
     AND (
@@ -338,7 +338,7 @@ const downloadExpenseItemSummarySummaryExcel = async (req, res) => {
         COUNT(*) AS total_expenses,
         SUM(e.quantity) AS total_quantity,
         SUM(e.price) AS total_price
-    FROM invoice.expenses e
+    FROM expenses e
     WHERE
         e.expenseDate BETWEEN ${startDate} AND ${endDate}
     GROUP BY e.itemId, YEAR(e.expenseDate), MONTH(e.expenseDate)
@@ -372,7 +372,7 @@ SELECT
                             'updatedAt', e2.updatedAt
                         )
                     )
-                    FROM invoice.expenses e2
+                    FROM expenses e2
                     WHERE e2.itemId = ei.id
                       AND YEAR(e2.expenseDate) = me.year
                       AND MONTH(e2.expenseDate) = me.month
@@ -382,8 +382,8 @@ SELECT
         FROM MonthlyExpenses me
         WHERE me.item_id = ei.id
     ) AS monthly_data
-FROM invoice.expenses e
-INNER JOIN invoice.expenseItems ei ON e.itemId = ei.id
+FROM expenses e
+INNER JOIN expenseItems ei ON e.itemId = ei.id
 WHERE
     e.expenseDate BETWEEN ${startDate} AND ${endDate}
     AND (

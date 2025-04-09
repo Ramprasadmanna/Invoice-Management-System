@@ -1035,9 +1035,9 @@ WITH MonthlySales AS (
         MONTH(cs.invoiceDate) AS month,
         SUM(csi.quantity) AS total_purchase,
         SUM(csi.total) AS total_amount
-    FROM invoice.cashSaleItems csi
-    INNER JOIN invoice.cashSales cs ON csi.cashSaleId = cs.id
-    INNER JOIN invoice.cashItems ci ON csi.itemId = ci.id
+    FROM cashSaleItems csi
+    INNER JOIN cashSales cs ON csi.cashSaleId = cs.id
+    INNER JOIN cashItems ci ON csi.itemId = ci.id
     WHERE
         cs.invoiceDate BETWEEN ${startDate} AND ${endDate}
         AND (
@@ -1090,8 +1090,8 @@ SELECT
                                         'price', csi2.price,
                                         'total', csi2.total
                                     )
-                                FROM invoice.cashSaleItems csi2
-                                INNER JOIN invoice.cashItems i ON csi2.itemId = i.id
+                                FROM cashSaleItems csi2
+                                INNER JOIN cashItems i ON csi2.itemId = i.id
                                 WHERE csi2.cashSaleId = cs.id
                                   AND csi2.itemId = csi.itemId
                                   AND YEAR(cs.invoiceDate) = ms.year
@@ -1099,10 +1099,10 @@ SELECT
                             )
                         )
                     )
-                    FROM invoice.cashSales cs
-                    INNER JOIN invoice.customer c ON cs.customerId = c.id
+                    FROM cashSales cs
+                    INNER JOIN customer c ON cs.customerId = c.id
                     WHERE EXISTS (
-                        SELECT 1 FROM invoice.cashSaleItems csi3 
+                        SELECT 1 FROM cashSaleItems csi3 
                         WHERE csi3.cashSaleId = cs.id 
                         AND csi3.itemId = csi.itemId
                         AND YEAR(cs.invoiceDate) = ms.year
@@ -1114,9 +1114,9 @@ SELECT
         FROM MonthlySales ms
         WHERE ms.item_id = csi.itemId
     ) AS monthly_data
-FROM invoice.cashSaleItems csi
-INNER JOIN invoice.cashSales cs ON csi.cashSaleId = cs.id
-INNER JOIN invoice.cashItems ci ON csi.itemId = ci.id
+FROM cashSaleItems csi
+INNER JOIN cashSales cs ON csi.cashSaleId = cs.id
+INNER JOIN cashItems ci ON csi.itemId = ci.id
 WHERE
     cs.invoiceDate BETWEEN ${startDate} AND ${endDate}
     AND (
@@ -1164,9 +1164,9 @@ WITH MonthlySales AS (
         MONTH(cs.invoiceDate) AS month,
         SUM(csi.quantity) AS total_purchase,
         SUM(csi.total) AS total_amount
-    FROM invoice.cashSaleItems csi
-    INNER JOIN invoice.cashSales cs ON csi.cashSaleId = cs.id
-    INNER JOIN invoice.cashItems ci ON csi.itemId = ci.id
+    FROM cashSaleItems csi
+    INNER JOIN cashSales cs ON csi.cashSaleId = cs.id
+    INNER JOIN cashItems ci ON csi.itemId = ci.id
     WHERE
         cs.invoiceDate BETWEEN ${startDate} AND ${endDate}
         AND (
@@ -1219,8 +1219,8 @@ SELECT
                                         'price', csi2.price,
                                         'total', csi2.total
                                     )
-                                FROM invoice.cashSaleItems csi2
-                                INNER JOIN invoice.cashItems i ON csi2.itemId = i.id
+                                FROM cashSaleItems csi2
+                                INNER JOIN cashItems i ON csi2.itemId = i.id
                                 WHERE csi2.cashSaleId = cs.id
                                   AND csi2.itemId = csi.itemId
                                   AND YEAR(cs.invoiceDate) = ms.year
@@ -1228,10 +1228,10 @@ SELECT
                             )
                         )
                     )
-                    FROM invoice.cashSales cs
-                    INNER JOIN invoice.customer c ON cs.customerId = c.id
+                    FROM cashSales cs
+                    INNER JOIN customer c ON cs.customerId = c.id
                     WHERE EXISTS (
-                        SELECT 1 FROM invoice.cashSaleItems csi3 
+                        SELECT 1 FROM cashSaleItems csi3 
                         WHERE csi3.cashSaleId = cs.id 
                         AND csi3.itemId = csi.itemId
                         AND YEAR(cs.invoiceDate) = ms.year
@@ -1243,9 +1243,9 @@ SELECT
         FROM MonthlySales ms
         WHERE ms.item_id = csi.itemId
     ) AS monthly_data
-FROM invoice.cashSaleItems csi
-INNER JOIN invoice.cashSales cs ON csi.cashSaleId = cs.id
-INNER JOIN invoice.cashItems ci ON csi.itemId = ci.id
+FROM cashSaleItems csi
+INNER JOIN cashSales cs ON csi.cashSaleId = cs.id
+INNER JOIN cashItems ci ON csi.itemId = ci.id
 WHERE
     cs.invoiceDate BETWEEN ${startDate} AND ${endDate}
     AND (
