@@ -28,7 +28,7 @@ import Paginate from '@components/Paginate';
 import Loader from '@components/Loader';
 import { dateFormatter } from '@utils/dateTimeFormatter';
 import formattedAmount from '@utils/formatAmount';
-import ItemsTable from './itemsTable';
+import ItemsTable from './ItemsTable';
 import {
   Preview,
   Download,

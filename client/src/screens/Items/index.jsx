@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import GstItems from './gstItems';
+import GstItems from './GstItems';
 import { ClipLoader } from 'react-spinners';
 import {
   ArrowUpTrayIcon,
