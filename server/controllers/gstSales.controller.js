@@ -1355,7 +1355,7 @@ WITH MonthlySales AS (
         SUM(gsi.igst) AS total_igst,
         SUM(gsi.total) AS total_amount
     FROM GstSaleItems gsi
-    INNER JOIN gstSales gs ON gsi.gstSaleId = gs.id
+    INNER JOIN GstSales gs ON gsi.gstSaleId = gs.id
     WHERE
     gs.invoiceDate BETWEEN ${startDate}
     AND ${endDate}
@@ -1424,7 +1424,7 @@ SELECT
                         )
                     )
                     FROM GstSaleItems gsi2
-                    INNER JOIN gstSales gs ON gsi2.gstSaleId = gs.id
+                    INNER JOIN GstSales gs ON gsi2.gstSaleId = gs.id
                     INNER JOIN Customer c ON gs.customerId = c.id
                     WHERE gsi2.hsnsacCode = gsi.hsnsacCode
                       AND YEAR(gs.invoiceDate) = ms.year
@@ -1436,7 +1436,7 @@ SELECT
         WHERE ms.hsn_code = gsi.hsnsacCode
     ) AS monthly_data
 FROM GstSaleItems gsi
-INNER JOIN gstSales gs ON gsi.gstSaleId = gs.id
+INNER JOIN GstSales gs ON gsi.gstSaleId = gs.id
 WHERE
 gs.invoiceDate BETWEEN ${startDate}
     AND ${endDate}
@@ -1487,7 +1487,7 @@ WITH MonthlySales AS (
         SUM(gsi.igst) AS total_igst,
         SUM(gsi.total) AS total_amount
     FROM GstSaleItems gsi
-    INNER JOIN gstSales gs ON gsi.gstSaleId = gs.id
+    INNER JOIN GstSales gs ON gsi.gstSaleId = gs.id
     WHERE
     gs.invoiceDate BETWEEN ${startDate}
     AND ${endDate}
@@ -1556,7 +1556,7 @@ SELECT
                         )
                     )
                     FROM GstSaleItems gsi2
-                    INNER JOIN gstSales gs ON gsi2.gstSaleId = gs.id
+                    INNER JOIN GstSales gs ON gsi2.gstSaleId = gs.id
                     INNER JOIN Customer c ON gs.customerId = c.id
                     WHERE gsi2.hsnsacCode = gsi.hsnsacCode
                       AND YEAR(gs.invoiceDate) = ms.year
@@ -1568,7 +1568,7 @@ SELECT
         WHERE ms.hsn_code = gsi.hsnsacCode
     ) AS monthly_data
 FROM GstSaleItems gsi
-INNER JOIN gstSales gs ON gsi.gstSaleId = gs.id
+INNER JOIN GstSales gs ON gsi.gstSaleId = gs.id
 WHERE
 gs.invoiceDate BETWEEN ${startDate}
     AND ${endDate}
@@ -1715,7 +1715,7 @@ WITH MonthlySales AS (
         SUM(gsi.igst) AS total_igst,
         SUM(gsi.total) AS total_amount
     FROM GstSaleItems gsi
-    INNER JOIN gstSales gs ON gsi.gstSaleId = gs.id
+    INNER JOIN GstSales gs ON gsi.gstSaleId = gs.id
     INNER JOIN gstItems gi ON gsi.itemId = gi.id
     WHERE
     gs.invoiceDate BETWEEN ${startDate}
@@ -1799,7 +1799,7 @@ SELECT
                                     )
                                 
                                 FROM GstSaleItems gsi2
-                                INNER JOIN gstSales gs2 ON gsi2.gstSaleId = gs2.id
+                                INNER JOIN GstSales gs2 ON gsi2.gstSaleId = gs2.id
                                 INNER JOIN GstItems i ON gsi2.itemId = i.id  -- ✅ Joining with GstItems to get item details
                                 WHERE gsi2.gstSaleId = gs.id
                                   AND gsi2.itemId = gsi.itemId
@@ -1808,7 +1808,7 @@ SELECT
                             )
                         )
                     )
-                    FROM gstSales gs
+                    FROM GstSales gs
                     INNER JOIN Customer c ON gs.customerId = c.id
                     WHERE EXISTS (
                         SELECT 1 FROM GstSaleItems gsi3 
@@ -1824,7 +1824,7 @@ SELECT
         WHERE ms.item_id = gsi.itemId
     ) AS monthly_data
 FROM GstSaleItems gsi
-INNER JOIN gstSales gs ON gsi.gstSaleId = gs.id
+INNER JOIN GstSales gs ON gsi.gstSaleId = gs.id
 INNER JOIN gstItems gi ON gsi.itemId = gi.id
 WHERE
     gs.invoiceDate BETWEEN ${startDate}
@@ -1879,7 +1879,7 @@ WITH MonthlySales AS (
         SUM(gsi.igst) AS total_igst,
         SUM(gsi.total) AS total_amount
     FROM GstSaleItems gsi
-    INNER JOIN gstSales gs ON gsi.gstSaleId = gs.id
+    INNER JOIN GstSales gs ON gsi.gstSaleId = gs.id
     INNER JOIN gstItems gi ON gsi.itemId = gi.id
     WHERE
     gs.invoiceDate BETWEEN ${startDate}
@@ -1963,7 +1963,7 @@ SELECT
                                     )
                                 
                                 FROM GstSaleItems gsi2
-                                INNER JOIN gstSales gs2 ON gsi2.gstSaleId = gs2.id
+                                INNER JOIN GstSales gs2 ON gsi2.gstSaleId = gs2.id
                                 INNER JOIN GstItems i ON gsi2.itemId = i.id  -- ✅ Joining with GstItems to get item details
                                 WHERE gsi2.gstSaleId = gs.id
                                   AND gsi2.itemId = gsi.itemId
@@ -1972,7 +1972,7 @@ SELECT
                             )
                         )
                     )
-                    FROM gstSales gs
+                    FROM GstSales gs
                     INNER JOIN Customer c ON gs.customerId = c.id
                     WHERE EXISTS (
                         SELECT 1 FROM GstSaleItems gsi3 
@@ -1988,7 +1988,7 @@ SELECT
         WHERE ms.item_id = gsi.itemId
     ) AS monthly_data
 FROM GstSaleItems gsi
-INNER JOIN gstSales gs ON gsi.gstSaleId = gs.id
+INNER JOIN GstSales gs ON gsi.gstSaleId = gs.id
 INNER JOIN gstItems gi ON gsi.itemId = gi.id
 WHERE
     gs.invoiceDate BETWEEN ${startDate}

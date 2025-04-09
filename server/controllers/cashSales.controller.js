@@ -1100,7 +1100,7 @@ SELECT
                         )
                     )
                     FROM cashSales cs
-                    INNER JOIN customer c ON cs.customerId = c.id
+                    INNER JOIN Customer c ON cs.customerId = c.id
                     WHERE EXISTS (
                         SELECT 1 FROM cashSaleItems csi3 
                         WHERE csi3.cashSaleId = cs.id 
@@ -1229,7 +1229,7 @@ SELECT
                         )
                     )
                     FROM cashSales cs
-                    INNER JOIN customer c ON cs.customerId = c.id
+                    INNER JOIN Customer c ON cs.customerId = c.id
                     WHERE EXISTS (
                         SELECT 1 FROM cashSaleItems csi3 
                         WHERE csi3.cashSaleId = cs.id 
