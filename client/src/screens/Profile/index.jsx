@@ -273,8 +273,8 @@ const ProfileScreen = () => {
                       </th>
                       <th
                         scope='col'
-                        className='relative py-3.5 pr-4 pl-3 sm:pr-0'>
-                        <span className='sr-only'>Buttons</span>
+                        className='px-3 py-3.5 text-right text-sm font-semibold text-gray-900'>
+                        Actions
                       </th>
                     </tr>
                   </thead>
@@ -301,16 +301,16 @@ const ProfileScreen = () => {
                           <div className='flex gap-4'>
                             <button
                               onClick={() => handleEdit(user)}
-                              className='text-wovBlue ml-auto ring-wovBlue flex items-center gap-1 rounded-sm bg-indigo-50 px-2 py-1 text-sm font-semibold shadow-xs ring-1 ring-inset hover:bg-white'>
+                              className='text-wovBlue ring-wovBlue ml-auto flex items-center gap-1 rounded-sm bg-indigo-50 px-2 py-1 text-sm font-semibold shadow-xs ring-1 ring-inset hover:bg-white'>
                               <PencilSquareIcon className='h-3 w-3' />
                               Edit
                             </button>
 
-                            <Delete
+                            {/* <Delete
                               queryfunc={useDeleteUserMutation}
                               id={user.id}
-                              message='Customer Deleted Sucessfully'
-                            />
+                              message='User Deleted Sucessfully'
+                            /> */}
                           </div>
                         </td>
                       </tr>
