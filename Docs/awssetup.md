@@ -37,7 +37,7 @@ Press `ctrl + c`
 
 6.  Clone the Project & Install Dependencies
  ```bash
- git clone https://github.com/Ramprasadmanna/Invoice-  Management-System.git
+ git clone https://github.com/Ramprasadmanna/Invoice-Management-System.git
 cd Invoice-Management-System
 
 **# Install server dependencies**
@@ -90,6 +90,7 @@ npm run build
     sudo ln -s /etc/nginx/sites-available/ims /etc/nginx/sites-enabled/
     sudo nginx -t
     sudo systemctl restart nginx
+    cd ..
  ```
 
 8. Install & Configure MySQL:
@@ -142,6 +143,7 @@ npm run build
  cd server
  npx prisma migrate deploy
  npx prisma generate
+ cd ..
  ```
 
 10. Start Backend with PM2
@@ -160,6 +162,36 @@ npm run build
  # Copy Inter fonts from project to the fonts folder
  cp /home/ubuntu/Invoice-Management-System/server/data/Fonts/Inter.ttc /home/ubuntu/Invoice-Management-System/server/data/Fonts/*.ttf ~/.fonts/
  ```
+
+10. Install Packages For PDF Genaration
+ ``` bash
+ sudo apt update && sudo apt-get update && sudo apt install -y \
+  libatk1.0-0 \
+  libatk-bridge2.0-0 \
+  libcups2 \
+  libxcomposite1 \
+  libxrandr2 \
+  libxdamage1 \
+  libpango-1.0-0 \
+  libnss3 \
+  libxshmfence1 \
+  libgbm-dev \
+  libx11-xcb1 \
+  libxcursor1 \
+  libxi6 \
+  libxtst6 \
+  libasound2t64 \
+  libpangocairo-1.0-0 \
+  libdrm2 \
+  libdbus-1-3 \
+  libxss1 \
+  libxfixes3t64 \
+  libglib2.0-0 \
+  libgtk-3-0 \
+  libcairo2 && \
+ ```
+
+  `pm2 restart ims-server`
 
 11. DB Tunelling in Local Machine
  ``` bash
